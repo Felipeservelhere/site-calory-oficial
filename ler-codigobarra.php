@@ -1,6 +1,6 @@
 <?php
 // Define a URL de retorno, recebida via parâmetro GET ou usa padrão local
-$paginaRetorno = isset($_GET['retorno']) ? $_GET['retorno'] : 'http://192.168.0.160/CaloryWebR4Hrestaurante/venda/cartao.php';
+$paginaRetorno = 'http://192.168.0.160/CaloryWebR4Hrestaurante/venda/cartao.php';
 $filtroCodigo = isset($_GET['filtroCodigo']) ? $_GET['filtroCodigo'] : '';
 ?>
 <!DOCTYPE html>
