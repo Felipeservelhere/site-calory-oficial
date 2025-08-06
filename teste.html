@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecionamento de Código</title>
+    <script>
+        // Função para extrair MEUIP e NOME da URL
+        function extractParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const retUrl = urlParams.get('ret') || '';
+            
+            // Extrai MEUIP e NOME do padrão http://MEUIP/NOME/venda/...
+            const match = retUrl.match(/http:\/\/([^\/]+)\/([^\/]+)\/venda\//);
+            
+            if (match && match.length >= 3) {
+                return {
+                    meuip: match[1],
+                    nome: match[2],
+                    code: urlParams.get('code') || ''
+                };
+            }
+            return null;
+        }
+
+        // Função para redirecionar para o aplicativo
+        function redirectToApp() {
+            const params = extractParams();
+            
+            if (params) {
+                // Monta a URL do aplicativo com os parâmetros originais
+                const appUrl = `meuscan://scan?ret=http://${params.meuip}/${params.nome}/venda/cartao.php?qrcode=${params.code}`;
+                
+                // Redireciona para o aplicativo
+                window.location.href = appUrl;
+                
+                // Fallback caso o app não esteja instalado
+                setTimeout(function() {
+                    window.location.href = 'https://calory.com.br/app-not-installed';
+                }, 500);
+            } else {
+                // Parâmetros inválidos
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+
+        // Executa quando a página carrega
+        window.onload = redirectToApp;
+    </script>
+</head>
+<body>
+    <div id="error" style="display: none; color: red; padding: 20px;">
+        <h2>Erro na URL</h2>
+        <p>A URL deve conter os parâmetros MEUIP e NOME no formato:</p>
+        <p>calory.com.br/auto-scan.html?ret=http://MEUIP/NOME/venda/...&code=CODIGO</p>
+    </div>
+</body>
+</html>
