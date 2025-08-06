@@ -1,6 +1,7 @@
 <?php
-$codigoRetorno = 'http://192.168.0.160/CaloryWebR4Hrestaurante/venda/pesquisa.php';
+$paginaRetorno = 'http://192.168.0.160/CaloryWebR4Hrestaurante/venda/pesquisa.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,27 +18,31 @@ $codigoRetorno = 'http://192.168.0.160/CaloryWebR4Hrestaurante/venda/pesquisa.ph
             font-family: sans-serif;
             text-align: center;
             padding: 20px;
+            background-color: #f9f9f9;
         }
         .btn-cancelar {
             margin-top: 20px;
-            font-size: 20px;
-            background-color: #ff3333;
+            font-size: 18px;
+            background-color: #d9534f;
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 10px 20px;
             border-radius: 5px;
+            cursor: pointer;
         }
         .btn-cancelar:hover {
-            background-color: #cc0000;
+            background-color: #c9302c;
         }
     </style>
 </head>
 <body>
-    <h1>Ler Código</h1>
+    <h1>Ler Código de Barras</h1>
     <div id="leitor"></div>
-    <button class="btn-cancelar" onclick="window.location.href='<?php echo $codigoRetorno; ?>'">Cancelar</button>
+    <button class="btn-cancelar" onclick="window.location.href='<?php echo $paginaRetorno; ?>'">Cancelar</button>
+
     <script>
         const html5QrCode = new Html5Qrcode("leitor");
+
         Html5Qrcode.getCameras().then(cameras => {
             if (cameras && cameras.length) {
                 html5QrCode.start(
@@ -45,10 +50,13 @@ $codigoRetorno = 'http://192.168.0.160/CaloryWebR4Hrestaurante/venda/pesquisa.ph
                     { fps: 10, qrbox: 250 },
                     qrCodeMessage => {
                         html5QrCode.stop().then(() => {
-                            window.location.href = "<?php echo $codigoRetorno; ?>?codigo=" + encodeURIComponent(qrCodeMessage);
+                            const destino = "<?php echo $paginaRetorno; ?>?qrcode=" + encodeURIComponent(qrCodeMessage);
+                            window.location.href = destino;
                         });
                     },
-                    errorMessage => {}
+                    errorMessage => {
+                        console.warn("Erro na leitura:", errorMessage);
+                    }
                 ).catch(err => {
                     alert("Erro ao iniciar a câmera: " + err);
                 });
@@ -56,7 +64,7 @@ $codigoRetorno = 'http://192.168.0.160/CaloryWebR4Hrestaurante/venda/pesquisa.ph
                 alert("Nenhuma câmera detectada.");
             }
         }).catch(err => {
-            alert("Erro ao acessar as câmeras: " + err);
+            alert("Erro ao acessar a câmera: " + err);
         });
     </script>
 </body>
