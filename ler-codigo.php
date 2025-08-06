@@ -69,7 +69,7 @@ $paginaRetorno = isset($_GET['retorno']) ? $_GET['retorno'] : 'http://192.168.0.
                     qrCodeMessage => {
                         // Para a câmera e redireciona para a URL de retorno
                         html5QrCode.stop().then(() => {
-                            const destino = "<?php echo $paginaRetorno; ?>?qrcode=" + encodeURIComponent(qrCodeMessage);
+                            const destino = "<?php echo $paginaRetorno; ?>?filtroMesa=" + encodeURIComponent(qrCodeMessage);
                             window.location.href = destino;
                         });
                     },
