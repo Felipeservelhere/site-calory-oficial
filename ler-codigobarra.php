@@ -164,7 +164,7 @@ $filtroCodigo = isset($_GET['filtroCodigo']) ? $_GET['filtroCodigo'] : '';
         Html5Qrcode.getCameras().then(cameras => {
             if(cameras && cameras.length){
                 currentCameraId = cameras[0].id;
-                startScanner({ deviceId: { exact: currentCameraId } });
+                startScanner({ facingMode: "environment" });
             } else {
                 alert("Nenhuma câmera detectada.");
             }
