@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agropecuária - Calory Sistemas</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="stylesagro.min.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17383219009"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17383219009');
+</script>  
+<body>
+
+  <header class="calory-header">
+    <div class="header-container">
+      <div class="calory-logo">
+        <a href="/">
+          <img src="calory png.png" alt="Logo Calory">
+        </a>
+      </div>
+      
+      <button class="calory-menu-toggle" onclick="caloryToggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <nav class="calory-nav-links">
+        <a href="/">Início</a>
+        <a href="/produtos">Produtos</a>
+        <a href="/contato">Contato</a>
+        <a class="calory-link-azul calory-desktop-only"
+          href="https://web.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento%20para%20o%20meu%20sistema!">
+          <i class="fas fa-rocket"></i> Obtenha o sistema
+        </a>
+        <a class="calory-link-azul-mobile calory-mobile-only"
+          href="https://api.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento%20para%20o%20meu%20sistema!">
+          <i class="fas fa-rocket"></i> OBTER SISTEMA AGORA
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="calory-banner-full" role="banner" aria-label="Banner principal para agropecuária">
+    <div class="calory-banner-overlay"></div>
+    <div class="calory-banner-content">
+      <h1>Sistema de Gestão para Lojas Agropecuárias</h1>
+      <p>Gerencie produtos, fornecedores, estoque e vendas com eficiência em uma solução completa para o setor agropecuário.</p>
+      <a href="#features" class="calory-link-azul1" style="text-decoration: none;">Conheça os recursos</a>
+    </div>
+    <div class="calory-arrow" onclick="document.getElementById('features').scrollIntoView({ behavior: 'smooth' });"
+      tabindex="0" role="button" aria-label="Role para o conteúdo principal"></div>
+  </section>
+
+  <main class="calory-main" id="features">
+    <h2 class="calory-intro-text">
+      Tudo que você precisa para gerenciar sua loja agropecuária com eficiência
+    </h2>
+    
+    <div class="calory-features-grid">
+      <div class="calory-feature-card">
+        <div class="feature-image-container">
+          <img src="estabelecimentos/agropecuaria/fertilizante.svg" alt="Controle de Produtos Agrícolas">
+        </div>
+        <div class="feature-content">
+          <h3>Controle de Produtos Agrícolas</h3>
+          <p>Registre e acompanhe fertilizantes, sementes, rações, medicamentos e insumos agrícolas com categorias específicas.</p>
+        </div>
+      </div>
+      
+      <div class="calory-feature-card">
+        <div class="feature-image-container">
+          <img src="estabelecimentos/agropecuaria/fornecedor.svg" alt="Gestão de Fornecedores">
+        </div>
+        <div class="feature-content">
+          <h3>Gestão de Fornecedores</h3>
+          <p>Tenha controle total sobre pedidos, entregas e contatos com fornecedores da área rural e agroindustrial.</p>
+        </div>
+      </div>
+      
+      <div class="calory-feature-card">
+        <div class="feature-image-container">
+          <img src="estabelecimentos/agropecuaria/validade.svg" alt="Controle de Validade">
+        </div>
+        <div class="feature-content">
+          <h3>Controle de Estoque por Validade</h3>
+          <p>Acompanhe produtos com prazos de validade e receba alertas de vencimento para evitar perdas.</p>
+        </div>
+      </div>
+      
+      <div class="calory-feature-card">
+        <div class="feature-image-container">
+          <img src="estabelecimentos/agropecuaria/relatorio.svg" alt="Relatórios Gerenciais">
+        </div>
+        <div class="feature-content">
+          <h3>Relatórios Gerenciais</h3>
+          <p>Obtenha dados completos sobre vendas, margens de lucro e desempenho de produtos por estação ou categoria.</p>
+        </div>
+      </div>
+      
+      <div class="calory-feature-card">
+        <div class="feature-image-container">
+          <img src="estabelecimentos/agropecuaria/lucro.svg" alt="Gestão de Vendas">
+        </div>
+        <div class="feature-content">
+          <h3>Gestão de Vendas e Recebimentos</h3>
+          <p>Controle de vendas, pagamentos e recebimentos de forma eficiente, com geração de recibos e conciliação bancária.</p>
+        </div>
+      </div>
+      
+      <div class="calory-feature-card">
+        <div class="feature-image-container">
+          <img src="estabelecimentos/agropecuaria/cliente.svg" alt="Controle de Clientes">
+        </div>
+        <div class="feature-content">
+          <h3>Controle de Clientes e Faturamento</h3>
+          <p>Gerencie o histórico de compras, crie faturas personalizadas e acompanhe o crédito de seus clientes.</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="calory-cta-section">
+      <h2>Pronto para transformar a gestão da sua agropecuária?</h2>
+      <p>Nosso sistema foi desenvolvido especialmente para atender as necessidades de lojas agropecuárias, com todas as funcionalidades que você precisa em um só lugar.</p>
+      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+        <div>
+          <a class="calory-cta-button calory-desktop-only"
+            href="https://web.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20informações%20sobre%20o%20sistema%20para%20lojas%20agropecuárias!">Fale com um especialista!</a>
+          <a class="calory-cta-button calory-mobile-only"
+            href="https://api.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20informações%20sobre%20o%20sistema%20para%20lojas%20agropecuárias!">Fale com um especialista!</a>
+        </div>
+        <div>
+          <a class="calory-cta-button" href="/csemp">Conheça mais o Sistema</a>
+        </div>
+      </div>
+    </section>
+    
+  </main>
+
+   <div class="calory-whatsapp-float">
+    <!-- Botão para Desktop (web.whatsapp) -->
+    <a class="calory-desktop-only"
+      href="https://web.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20tirar%20algumas%20dúvidas!">
+      <span class="calory-whatsapp-icon">
+        <img src="icon/whats.png" alt="WhatsApp" />
+      </span>
+    </a>
+
+    <!-- Botão para Mobile (api.whatsapp) -->
+    <a class="calory-mobile-only"
+      href="https://api.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20tirar%20algumas%20dúvidas!">
+      <span class="calory-whatsapp-icon">
+        <img src="icon/whats.png" alt="WhatsApp" />
+      </span>
+    </a>
+  </div>
+
+  <footer class="calory-footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="calory branco png (1).png" alt="Calory Sistemas" class="footer-logo-img">
+        <p>Soluções tecnológicas para o agronegócio brasileiro. Inovação e qualidade para o seu negócio.</p>
+      </div>
+      
+      <div class="footer-links">
+        <h3>Links Rápidos</h3>
+        <ul>
+          <li><a href="/">Início</a></li>
+          <li><a href="/produtos">Produtos</a></li>
+          <li><a href="/contato">Contato</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h3>Produtos</h3>
+        <ul>
+          <li><a href="/csemp">Sistema de Gestão</a></li>
+          <li><a href="/estoque">Controle de Estoque</a></li>
+          <li><a href="/csemite">Emissão de nota fiscal</a></li>
+          <li><a href="/CertificadoDigital">Certificado Digital</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-social">
+        <h3>Redes Sociais</h3>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/calorysistemas/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/calorysistemas/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/calory-sistema" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p style="margin-top: 20px;">Siga-nos para ficar por dentro das novidades!</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2023 Calory Sistemas. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+  function caloryToggleMenu(){const e=document.querySelector(".calory-nav-links"),t=document.querySelector(".calory-menu-toggle");e.classList.toggle("active"),t.classList.toggle("active")}document.querySelectorAll(".calory-nav-links a").forEach(e=>{e.addEventListener("click",()=>{window.innerWidth<=899.98&&caloryToggleMenu()})}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault(),document.querySelector(this.getAttribute("href")).scrollIntoView({behavior:"smooth"})})}),window.addEventListener("scroll",function(){const e=document.querySelector(".calory-header");window.scrollY>50?e.classList.add("scrolled"):e.classList.remove("scrolled")});
+</script>
+</body>
+</html>
