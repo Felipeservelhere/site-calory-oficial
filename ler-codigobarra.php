@@ -1,5 +1,4 @@
 <?php
-// Recebe o parâmetro ret via GET
 $retorno = isset($_GET['ret']) ? $_GET['ret'] : '';
 if (empty($retorno)) {
     die("Parâmetro 'ret' não fornecido.");
@@ -29,8 +28,9 @@ if (empty($retorno)) {
       font-size: 1.5rem;
     }
     #reader {
-      width: 100%;
-      max-width: 600px;
+      width: 95vw;
+      max-width: 800px;
+      height: 70vh;
       margin-bottom: 10px;
     }
     .controls {
@@ -90,7 +90,7 @@ if (empty($retorno)) {
         cameraId,
         config,
         decodedText => {
-          if (!window.qrProcessed) {
+          if (!window.qrProcessed && decodedText.length >= 4) {
             window.qrProcessed = true;
             const destino = urlBase.replace('{CODE}', encodeURIComponent(decodedText));
             html5QrCode.stop().then(() => {
