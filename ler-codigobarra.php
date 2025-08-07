@@ -90,7 +90,7 @@ if (empty($retorno)) {
         cameraId,
         config,
         decodedText => {
-          if (!window.qrProcessed && decodedText.length >= 4) {
+          if (!window.qrProcessed && /^\d{4}$/.test(decodedText)) {
             window.qrProcessed = true;
             const destino = urlBase.replace('{CODE}', encodeURIComponent(decodedText));
             html5QrCode.stop().then(() => {
