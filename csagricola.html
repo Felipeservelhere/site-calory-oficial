@@ -49,7 +49,7 @@
             
             /* Custom Design Tokens - cores originais Calory */
             --gradient-primary: linear-gradient(135deg, hsl(208 100% 50%), hsl(197 100% 59%));
-            --gradient-hero: linear-gradient(135deg, hsl(186 100% 94%), hsl(197 100% 85%));
+            --gradient-hero: linear-gradient(135deg, hsl(54, 100%, 94%), hsl(36, 90%, 51%));
             --shadow-glow: 0 4px 15px hsl(208 100% 50% / 0.3);
             --shadow-float: 0 10px 30px -10px hsl(var(--primary) / 0.2);
             --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -87,7 +87,7 @@
         }
 
         .btn-primary {
-            background: var(--gradient-primary);
+            background: orange;
             color: white;
             padding: 0.75rem 1.5rem;
             box-shadow: var(--shadow-glow);
@@ -435,7 +435,7 @@
         }
 
         .hero-title .highlight {
-            color: hsl(var(--primary));
+            color: orange;
         }
 
         .hero-description {
@@ -469,7 +469,7 @@
         .scroll-indicator .scroll-icon {
             width: 38px;
             height: 55px;
-            border: 2px solid #8f8f8f;
+            border: 2px solid #ffffff;
             border-radius: 25px;
             display: flex;
             justify-content: center;
@@ -482,8 +482,8 @@
             display: block;
             width: 12px;
             height: 12px;
-            border-bottom: 3px solid #8f8f8f;
-            border-right: 3px solid #8f8f8f;
+            border-bottom: 3px solid #ffffff;
+            border-right: 3px solid #ffffff;
             transform: rotate(45deg);
             margin-top: 6px;
         }
@@ -857,7 +857,7 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title animate-fade-in-up">
-                        Sistema Empresarial
+                        Sistema Agrícola
                         <span class="highlight">Completo</span>
                     </h1>
                     
@@ -867,7 +867,14 @@
                     </p>
                     
                     <div class="animate-fade-in-up" style="animation-delay: 0.4s;">
-                        <a href="/#calory-banner-content" class="btn btn-primary btn-lg">
+                        <a href="https://api.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento%20personalizado%20para%20o%20meu%20sistema%20agrícola!"
+                         class="mobile-only btn btn-primary btn-lg">
+                            Solicite um Orçamento Personalizado
+                        </a>
+                    </div>
+                    <div class="animate-fade-in-up" style="animation-delay: 0.4s;">
+                        <a href="https://web.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento%20personalizado%20para%20o%20meu%20sistema%20agrícola!"
+                         class="desktop-only btn btn-primary btn-lg">
                             Solicite um Orçamento Personalizado
                         </a>
                     </div>
@@ -875,7 +882,7 @@
 
                 <div class="hero-image animate-fade-in-up" style="animation-delay: 0.3s;">
                     <div class="animate-float">
-                        <img src="banner/ChatGPT_Image_1_de_jul._de_2025__16_05_29-removebg-preview.png" alt="Sistema Empresarial">
+                        <img src="banner/CSSENHA.png" alt="Sistema Empresarial">
                     </div>
                 </div>
             </div>
@@ -893,12 +900,12 @@
             <div class="features-header">
                 <h2 class="features-title">Funcionalidades do Sistema</h2>
                 <p class="features-description">
-                    Descubra todas as ferramentas que você precisa para gerenciar seu negócio de forma eficiente
+                    Descubra todas as ferramentas que você precisa para gerenciar seu negócio agrícola de forma eficiente
                 </p>
             </div>
 
             <div class="features-grid">
-                <a href="/Inicio" class="feature-card animate-fade-in-up" style="animation-delay: 0s;">
+                <a href="/Inicioagro" class="feature-card animate-fade-in-up" style="animation-delay: 0s;">
                     <div class="feature-icon">
                         <i data-lucide="bar-chart-3" width="32" height="32" color="white"></i>
                     </div>
@@ -909,7 +916,7 @@
                     <div class="feature-hint">Clique para saber mais</div>
                 </a>
 
-                <a href="/estoque" class="feature-card animate-fade-in-up" style="animation-delay: 0.1s;">
+                <a href="/estoqueagro" class="feature-card animate-fade-in-up" style="animation-delay: 0.1s;">
                     <div class="feature-icon">
                         <i data-lucide="package" width="32" height="32" color="white"></i>
                     </div>
@@ -920,24 +927,24 @@
                     <div class="feature-hint">Clique para saber mais</div>
                 </a>
 
-                <a href="/Cliente" class="feature-card animate-fade-in-up" style="animation-delay: 0.2s;">
+                <a href="/balancageral" class="feature-card animate-fade-in-up" style="animation-delay: 0.2s;">
                     <div class="feature-icon">
-                        <i data-lucide="users" width="32" height="32" color="white"></i>
+                        <i data-lucide="scale" width="32" height="32" color="white"></i>
                     </div>
-                    <h3 class="feature-title">Clientes</h3>
+                    <h3 class="feature-title">Balança Geral</h3>
                     <p class="feature-description">
-                        Relacionamento com o cliente aprimorado: conheça seus clientes e personalize o atendimento.
+                        Faça a pesagem dos caminhões com opção de Bruto, Tara, porcentagem de Umidade entre outras funções.
                     </p>
                     <div class="feature-hint">Clique para saber mais</div>
                 </a>
 
-                <a href="/Documentos" class="feature-card animate-fade-in-up" style="animation-delay: 0.3s;">
+                <a href="/notaprodutor" class="feature-card animate-fade-in-up" style="animation-delay: 0.3s;">
                     <div class="feature-icon">
                         <i data-lucide="file-text" width="32" height="32" color="white"></i>
                     </div>
-                    <h3 class="feature-title">Documentos Fiscais</h3>
+                    <h3 class="feature-title">NFP-E</h3>
                     <p class="feature-description">
-                        Emissão fiscal simplificada: emita notas fiscais de forma rápida e segura.
+                        Emita notas de produtores de forma fácil e simplificada.
                     </p>
                     <div class="feature-hint">Clique para saber mais</div>
                 </a>

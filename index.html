@@ -308,6 +308,16 @@
       z-index: 1;
     }
 
+    .calory-banner-overlay3 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(167, 116, 40, 0.3));
+      z-index: 1;
+    }
+
     .calory-banner-content {
       position: absolute;
       top: 0;
@@ -374,12 +384,33 @@
       overflow: hidden;
     }
 
+    .calory-cta-button2 {
+      display: inline-flex;
+      align-items: center;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: white !important;
+      text-decoration: none;
+      margin-top: 20%;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
     .calory-cta-button i {
       margin-right: 10px;
       font-size: 1.2rem;
     }
 
     .calory-cta-button1 i {
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    .calory-cta-button2 i {
       margin-right: 10px;
       font-size: 1.2rem;
     }
@@ -391,6 +422,11 @@
     }
 
     .calory-cta-button1:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .calory-cta-button2:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     }
@@ -419,11 +455,27 @@
       transition: all 0.3s ease;
     }
 
+    .calory-cta-button2::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: rotate(45deg);
+      transition: all 0.3s ease;
+    }
+
     .calory-cta-button:hover::after {
       left: 100%;
     }
 
     .calory-cta-button1:hover::after {
+      left: 100%;
+    }
+
+    .calory-cta-button2:hover::after {
       left: 100%;
     }
 
@@ -996,6 +1048,14 @@
         position: relative;
       }
 
+      .calory-cta-button2 {
+        padding: 12px 25px;
+        font-size: 1rem;
+        margin-top: 30% !important;
+        z-index: 3;
+        position: relative;
+      }
+
       .calory-carousel-arrow {
         z-index: 2;
       }
@@ -1025,6 +1085,12 @@
       .calory-mobile-only {
         display: inline-block !important;
       }
+
+      .calory-link-azul {
+    font-size: 0.9rem !important; /* Reduzir o tamanho da fonte */
+    padding: 12px 16px !important; /* Reduzir o padding */
+    white-space: nowrap; /* Impedir quebra de linha */
+  }
 
       body {
         padding-top: 70px;
@@ -1087,7 +1153,13 @@
       }
 
       .calory-cta-button1 {
-        padding: 16px 16px;
+        padding: 10px 20px;
+        margin-top: 35% !important;
+        font-size: 0.9rem;
+      }
+
+      .calory-cta-button2 {
+        padding: 10px 20px;
         margin-top: 35% !important;
         font-size: 0.9rem;
       }
@@ -1174,7 +1246,13 @@
       }
 
       .calory-cta-button1 {
-        padding: 16px 16px;
+        padding: 8px 16px;
+        margin-top: 35% !important;
+        font-size: 0.9rem;
+      }
+
+      .calory-cta-button1 {
+        padding: 8px 16px;
         margin-top: 35% !important;
         font-size: 0.9rem;
       }
@@ -1339,18 +1417,32 @@
           </a>
         </div>
       </div>
+      <div class="calory-banner-slide">
+        <picture>
+          <source media="(max-width: 767px)" srcset="banner/csagricolamb.png">
+          <img src="banner/CSAGRíCOLA (19).png" alt="Banner CSAGRÍCOLA">
+        </picture>
+        <div class="calory-banner-overlay3"></div>
+        <div class="calory-banner-content">
+          <a href="#form-orcamento" class="calory-cta-button2" style="background-color: #ff9214;"
+            onclick="expandFormSection()">
+            <i class="fa fa-leaf"></i> CONHEÇA AGORA
+          </a>
+        </div>
+      </div>
     </div>
 
     <div class="calory-banner-nav" id="bannerNav">
       <div class="calory-banner-dot active" onclick="goToBannerSlide(0)"></div>
       <div class="calory-banner-dot" onclick="goToBannerSlide(1)"></div>
       <div class="calory-banner-dot" onclick="goToBannerSlide(2)"></div>
+      <div class="calory-banner-dot" onclick="goToBannerSlide(3)"></div>
     </div>
 
     <div class="calory-arrow"
-      onclick="document.getElementById('form-orcamento').scrollIntoView({ behavior: 'smooth', block: 'center' });"
-      tabindex="0" role="button" aria-label="Role para o conteúdo principal"></div>
-  </div>
+     onclick="document.getElementById('video-demo').scrollIntoView({ behavior: 'smooth', block: 'center' });"
+     tabindex="0" role="button" aria-label="Role para o conteúdo principal"></div>
+    </div>
 
   <!-- Formulário de Orçamento - Modificado para iniciar minimizado -->
   <section id="form-orcamento" class="calory-form-section">
@@ -1395,6 +1487,7 @@
             <option value="CSEMP - Gestão Completa">CSEMP - Gestão Completa</option>
             <option value="CSBAR - Para bares/restaurantes">CSBAR - Para bares/restaurantes</option>
             <option value="CSEMITE - Notas fiscais">CSEMITE - Notas fiscais</option>
+            <option value="CSAGRÍCOLA - Gerenciamento">CSAGRÍCOLA - Gerenciamento</option>
             <option value="Não sei, preciso de ajuda">Não sei, preciso de ajuda</option>
           </select>
         </div>
@@ -1499,7 +1592,7 @@
   </section>
 
   <!-- Seção de Vídeo Demonstração -->
-  <section class="calory-video-section">
+  <section id="video-demo" class="calory-video-section">
     <div class="container">
       <h2>Veja o CSEMP em ação</h2>
       <p>Assista a esta demonstração rápida e descubra como nosso sistema pode transformar a gestão do seu negócio:</p>
@@ -1613,7 +1706,7 @@
     let bannerCurrentSlide = 0;
     const bannerTrack = document.getElementById('bannerTrack');
     const bannerDots = document.querySelectorAll('.calory-banner-dot');
-    const bannerTotalSlides = 3;
+    const bannerTotalSlides = 4;
     let bannerInterval;
     let bannerIsAnimating = false;
 
