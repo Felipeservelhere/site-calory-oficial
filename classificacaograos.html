@@ -2,13 +2,14 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela Inicial - Sistema Calory</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classificação de Grãos - Sistema Agrícola</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17383219009"></script>
 <script>
@@ -276,80 +277,77 @@
             margin-bottom: 40px;
         }
 
-        .calory-screenshot {
+        .calory-detalhes-container {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 40px;
         }
 
-        .calory-screenshot img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
+        .calory-detalhes-linha {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .calory-detalhes-linha img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: zoom-in;
-            transition: transform 0.3s ease;
         }
 
-        .calory-screenshot img:hover {
+        .calory-detalhes-linha img:hover {
             transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .calory-beneficios,
-        .calory-galeria,
-        .calory-comparativo,
-        .calory-faq {
+        .calory-detalhes-linha .calory-texto {
+            flex: 1;
+            min-width: 200px;
+            text-align: left;
+        }
+
+        .calory-detalhes-linha h2 {
+            font-size: 1.5rem;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .calory-detalhes-linha p {
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .calory-galeria {
             margin-top: 40px;
             text-align: center;
         }
 
-        .calory-beneficios h2,
-        .calory-galeria h2,
-        .calory-comparativo h2,
-        .calory-faq h2 {
+        .calory-galeria h2 {
             font-size: 1.8rem;
             color: #007bff;
             margin-bottom: 30px;
-        }
-
-        .calory-beneficios-lista {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 0 20px;
-        }
-
-        .calory-beneficios-lista .calory-item {
-            width: calc(50% - 20px);
-            min-width: 200px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .calory-beneficios-lista img {
-            width: 48px;
-            height: 48px;
-            margin-bottom: 10px;
         }
 
         .calory-galeria-imagens {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 1%;
         }
 
         .calory-galeria-imagens a {
             text-decoration: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1%;
-        }
-
-        .calory-item p {
-            font-size: 1.1rem;
+            color: inherit;
+            width: calc(33.33% - 20px);
+            max-width: 200px;
+            margin-bottom: 20px;
         }
 
         .calory-bloco-interface {
@@ -358,7 +356,8 @@
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -372,7 +371,7 @@
 
         .calory-bloco-interface img {
             width: 100%;
-            height: 150px;
+            height: 120px;
             object-fit: contain;
             border-radius: 10px;
             margin-bottom: 10px;
@@ -392,51 +391,6 @@
         .calory-bloco-interface span {
             font-size: 0.8rem;
             color: #777;
-        }
-
-        .calory-comparativo table {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            border-collapse: collapse;
-        }
-
-        .calory-comparativo th,
-        .calory-comparativo td {
-            border: 1px solid #ccc;
-            padding: 12px;
-        }
-
-        .calory-comparativo th {
-            background-color: #f0f8ff;
-        }
-
-        .calory-faq {
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .calory-faq .calory-pergunta {
-            margin-bottom: 20px;
-        }
-
-        .calory-faq .calory-pergunta strong {
-            display: block;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        .calory-botao {
-            display: block;
-            margin: 40px auto;
-            padding: 15px 30px;
-            background-color: #007bff;
-            color: #fff;
-            font-weight: bold;
-            border-radius: 8px;
-            text-decoration: none;
         }
 
         .calory-botao-pedido {
@@ -585,6 +539,44 @@
         display: inline-block !important;
       }
 
+        /* Lightbox */
+        .calory-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            cursor: zoom-in;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .calory-lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            transform-origin: center center;
+            transition: transform 0.3s ease;
+        }
+
+        .calory-lightbox .calory-close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .calory-lightbox .calory-close-button:hover {
+            transform: rotate(90deg);
+            color: #ff6b6b;
+        }
+
         /* Responsive Styles */
         @media (max-width: 899.98px) {
             .calory-desktop-only {
@@ -644,8 +636,13 @@
                 display: flex !important;
             }
 
-            .calory-beneficios-lista .calory-item {
-                width: 100%;
+            .calory-detalhes-linha {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .calory-detalhes-linha img {
+                max-width: 100%;
             }
 
             .calory-galeria-imagens {
@@ -687,16 +684,6 @@
             .calory-bloco-interface span {
                 font-size: 0.6rem;
             }
-
-            .calory-botao-pedido {
-                display: block;
-                width: 90%;
-                max-width: 300px;
-                margin: 30px auto;
-                padding: 18px 20px;
-                font-size: 1.2rem;
-                text-align: center;
-            }
         }
 
         @media (max-width: 480px) {
@@ -708,20 +695,12 @@
                 font-size: 0.8rem;
             }
 
-            .calory-beneficios h2,
-            .calory-galeria h2,
-            .calory-comparativo h2,
-            .calory-faq h2 {
-                font-size: 1.4rem;
+            .calory-detalhes-linha h2 {
+                font-size: 1.1rem;
             }
 
-            .calory-beneficios-lista img {
-                width: 36px;
-                height: 36px;
-            }
-
-            .calory-item p {
-                font-size: 0.9rem;
+            .calory-detalhes-linha p {
+                font-size: 0.7rem;
             }
 
             .calory-bloco-interface h3 {
@@ -746,47 +725,6 @@
                 width: 25px;
                 height: 25px;
             }
-        }
-
-        /* Estilos para a visualização expandida da imagem */
-        .calory-image-popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        .calory-image-popup.active {
-            display: flex;
-        }
-
-        .calory-image-popup img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            cursor: zoom-in;
-            transition: transform 0.3s ease;
-        }
-
-        .calory-image-popup .calory-close-button {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 2rem;
-            color: #fff;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 2100;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            padding: 0 12px;
         }
     </style>
 </head>
@@ -824,44 +762,47 @@
     </header>
 
     <main class="calory-main">
-        <h1>Tela Inicial do Sistema</h1>
+        <h1>Classificação de grãos</h1>
         <p>
-            A tela inicial do sistema Agrícola foi desenvolvida para oferecer uma visão clara e rápida do desempenho da sua
-            empresa.
-            Com indicadores em destaque e atalhos intuitivos, o usuário pode acessar rapidamente as funcionalidades
-            principais do sistema.
+            Esta tela apresenta o registro e a gestão da classificação de grãos, permitindo controlar de forma prática a qualidade e padronização de cada lote. O sistema exibe informações como tipo de grão, tamanho, qualidade, produtor e todos os dados necessários para o correto armazenamento e processamento.
         </p>
 
-        <div class="calory-screenshot">
-            <img src="telaagricolaimgs/Inicioagro.PNG" alt="Print da tela inicial do sistema Calory"
-                id="calory-screenshot-img">
-        </div>
-
-        <section class="calory-beneficios">
-            <h2>Por que a Tela Inicial é importante?</h2>
-            <div class="calory-beneficios-lista">
-                <div class="calory-item">
-                    <img src="https://img.icons8.com/fluency/48/combo-chart.png" alt="Indicadores">
-                    <p>Indicadores de desempenho em tempo real.</p>
-                </div>
-                <div class="calory-item">
-                    <img src="https://img.icons8.com/fluency/48/shortcut.png" alt="Atalhos">
-                    <p>Atalhos rápidos para seções essenciais.</p>
-                </div>
-                <div class="calory-item">
-                    <img src="https://img.icons8.com/fluency/48/appointment-reminders.png" alt="Alertas">
-                    <p>Alertas automáticos e lembretes.</p>
-                </div>
-                <div class="calory-item">
-                    <img src="https://img.icons8.com/fluency/48/categorize.png" alt="Organização">
-                    <p>Organização centralizada do sistema.</p>
+        <div class="calory-detalhes-container">
+            <div class="calory-detalhes-linha">
+                <img src="telaagricolaimgs/tipopeso.png" alt="Clientes Cadastrados" class="calory-zoom-img">
+                <div class="calory-texto">
+                    <h2>Tipo de Peso</h2>
+                    <p>Aqui o operador escolhe entre Tara (veículo vazio) ou Bruto (veículo carregado) com leitura automática da sua balança sem você precisar escrever e o sistema ja detecta automático se é uma entrada ou saída para fazer o cálculo final depois. Essa definição é essencial para o cálculo automático do peso líquido da carga.</p>
                 </div>
             </div>
-        </section>
+
+            <div class="calory-detalhes-linha">
+                <img src="telaagricolaimgs/tipoproduto.png" alt="Cadastro de Clientes" class="calory-zoom-img">
+                <div class="calory-texto">
+                    <h2>Produto e Grãos</h2>
+                    <p>Aqui o operador seleciona o tipo de produto movimentado (Grãos, Lenha, Resíduo ou Outros) e, em seguida, especifica o grão exato (Soja, Milho ou Trigo). Essa definição garante que o sistema registre corretamente qual mercadoria está sendo pesada e controlada no romaneio.</p>
+                </div>
+            </div>
+
+            <div class="calory-detalhes-linha">
+                <img src="telaagricolaimgs/outrasinfos.png" alt="Limite de Credito" class="calory-zoom-img">
+                <div class="calory-texto">
+                    <h2>Peso e Informações da Carga</h2>
+                    <p>Nesta área são preenchidos os detalhes complementares da pesagem, como motorista, origem ou destino da carga e os percentuais de impureza, umidade e avariados também totalmente automáticos. Esses dados são usados pelo sistema para calcular o peso líquido final e gerar o romaneio, documento oficial que consolida toda a operação.</p>
+                </div>
+            </div>
+        </div>
 
         <section class="calory-galeria">
             <h2>Veja mais da Interface</h2>
             <div class="calory-galeria-imagens">
+                                <a href="/inicioagro">
+                    <div class="calory-bloco-interface">
+                        <img src="icon/logo-inicio-tela.svg" alt="Documentos fiscais">
+                        <h3>Tela Inicial</h3>
+                        <span>Clique para saber mais</span>
+                    </div>
+                </a>
                                 <a href="/notaprodutor">
                     <div class="calory-bloco-interface">
                         <img src="icon/logo-documentos-tela.svg" alt="Documentos fiscais">
@@ -891,13 +832,6 @@
                         <span>Clique para saber mais</span>
                     </div>
                 </a>
-                <a href="/classificacaograos">
-                    <div class="calory-bloco-interface">
-                        <img src="icon/telagraos.png" alt="Documentos fiscais">
-                        <h3>Classificação de Grãos</h3>
-                        <span>Clique para saber mais</span>
-                    </div>
-                </a>
                 <a href="/maquinario">
                     <div class="calory-bloco-interface">
                         <img src="icon/telamaquinario.png" alt="Documentos fiscais">
@@ -913,15 +847,12 @@
                     </div>
                 </a>
             </div>
-        </section>
 
-        <div style="text-align: center;">
+            <div style="text-align: center;">
     <a href="https://api.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento%20para%20o%20meu%20sistema!" class="calory-botao-pedido calory-mobile-only">Solicitar meu Sistema Agora</a>
     <a href="https://web.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento%20para%20o%20meu%20sistema!" class="calory-botao-pedido calory-desktop-only">Solicitar meu Sistema Agora</a>
         </div>
-
-
-
+        </section>
     </main>
 
     <div class="calory-whatsapp-float">
@@ -985,7 +916,7 @@
   </footer>
 
     <!-- Popup para visualização da imagem -->
-    <div class="calory-image-popup" id="calory-lightbox">
+    <div class="calory-lightbox" id="calory-lightbox">
         <span class="calory-close-button" id="calory-closeBtn">&times;</span>
         <img src="" alt="Imagem Expandida" id="calory-lightbox-img">
     </div>
@@ -1013,17 +944,17 @@
         const caloryLightbox = document.getElementById('calory-lightbox');
         const caloryLightboxImg = document.getElementById('calory-lightbox-img');
         const caloryCloseBtn = document.getElementById('calory-closeBtn');
-        const caloryScreenshotImg = document.getElementById('calory-screenshot-img');
+        const caloryZoomImgs = document.querySelectorAll('.calory-zoom-img');
         let isZoomed = false;
 
-        if(caloryScreenshotImg) {
-            caloryScreenshotImg.addEventListener('click', () => {
-                caloryLightboxImg.src = caloryScreenshotImg.src;
+        caloryZoomImgs.forEach(img => {
+            img.addEventListener('click', () => {
+                caloryLightboxImg.src = img.src;
                 caloryLightbox.style.display = 'flex';
                 caloryLightboxImg.style.transform = 'scale(1)';
                 isZoomed = false;
             });
-        }
+        });
 
         caloryCloseBtn.addEventListener('click', () => {
             caloryLightbox.style.display = 'none';
