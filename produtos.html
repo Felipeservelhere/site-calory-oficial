@@ -7,7 +7,7 @@
     <title>Produtos - Calory Sistemas</title>
     <meta name="description" content="Conheça nossos produtos: sistemas de gestão empresarial, emissão de notas fiscais, certificados digitais e equipamentos para sua empresa.">
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -30,7 +30,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f9f9f9;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: #333333;
             line-height: 1.6;
             scroll-behavior: smooth;
@@ -272,84 +272,441 @@
             box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
         }
 
-        /* Main Content Styles */
+        /* ===== MELHORIAS DA PÁGINA DE PRODUTOS ===== */
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 80px 5% 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.1)" d="M0,0 C150,100 350,0 500,50 C650,100 850,0 1000,50 L1000,00 L0,0 Z"></path></svg>');
+            background-size: cover;
+            animation: wave 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateX(-25px); }
+            50% { transform: translateX(25px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #e3f2fd);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            color: #00bfff;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Content Styles Melhorados */
         main {
-            padding: 60px 5% 60px;
+            padding: 0 5% 60px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        .page-title {
-            text-align: center;
-            font-size: 2.8rem;
-            color: #29a8ff;
-            margin-bottom: 60px;
-            font-weight: 700;
+        .products-section {
+            padding: 60px 0;
         }
 
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #007bff, #00bfff);
+            border-radius: 2px;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Filtros de Produtos */
+        .product-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid #e3f2fd;
+            background: white;
+            color: #666;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, #007bff, #00bfff);
+            color: white;
+            border-color: #007bff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Grid de Produtos Melhorado */
         .services-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .services-container.filtering {
+            opacity: 0.7;
         }
 
         .service-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             text-decoration: none;
             color: inherit;
+            position: relative;
+            transform: translateY(0);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #007bff, #00bfff);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            border-color: rgba(0, 123, 255, 0.2);
+        }
+
+        .card-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 220px;
         }
 
         .card-image {
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .card-image {
+            transform: scale(1.1);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .card-content {
-            padding: 20px;
+            padding: 30px 25px 25px;
+            position: relative;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #007bff, #00bfff);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
         }
 
         .card-content h2 {
-            color: #1c7ccf;
+            color: #2c3e50;
             margin-bottom: 15px;
-            font-size: 1.3rem;
-            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1.3;
         }
 
         .card-content p {
-            color: #555;
-            margin-bottom: 15px;
-            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
             font-size: 0.95rem;
-            line-height: 1.5;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .card-features li {
+            color: #555;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .card-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
 
         .card-button {
-            display: block;
+            flex: 1;
             text-align: center;
-            background-color: #29a8ff;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 25px;
+            background: linear-gradient(135deg, #007bff, #00bfff);
+            color: white !important;
+            padding: 12px 20px;
+            border-radius: 30px;
             font-weight: 600;
-            transition: background-color 0.3s ease;
-            margin-top: 15px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .card-button:hover {
+            background: linear-gradient(135deg, #0056b3, #0099ff);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+        }
+
+        .card-price {
+            color: #007bff;
+            font-weight: 700;
             font-size: 0.9rem;
         }
 
-        .service-card:hover .card-button {
-            background-color: #1c7ccf;
+        /* Animações de entrada */
+        .service-card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardFadeIn 0.6s ease-out forwards;
         }
 
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes cardFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Seção de CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 60px 5%;
+            text-align: center;
+            margin: 60px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #007bff, #00bfff);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #0056b3, #0099ff);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+        }
+
+        .cta-button i {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover i {
+            transform: translateX(5px);
+        }
+
+        /* WhatsApp Float (Manter Original) */
         .calory-whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -385,7 +742,7 @@
             transform: scale(1.1);
         }
 
-        /* Footer */
+        /* Footer (Manter Original) */
         .calory-footer {
             background-color: #2c3e50;
             color: #ffffff;
@@ -482,13 +839,21 @@
         /* Responsividade */
         @media (max-width: 1300px) {
             .services-container {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 1024px) {
             .services-container {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-stats {
+                gap: 20px;
             }
         }
 
@@ -549,10 +914,27 @@
             .calory-link-azul-mobile {
                 display: flex !important;
             }
+
+            .hero-section {
+                padding: 60px 5% 40px;
+            }
             
-            .page-title {
+            .hero-title {
                 font-size: 2.2rem;
-                margin-bottom: 40px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .product-filters {
+                justify-content: center;
+            }
+
+            .filter-btn {
+                padding: 10px 18px;
+                font-size: 0.9rem;
             }
         }
 
@@ -563,13 +945,25 @@
                 margin: 0 auto;
             }
 
-            .page-title {
+            .hero-title {
                 font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .cta-title {
+                font-size: 1.8rem;
             }
         }
 
         @media (max-width: 480px) {
-            .page-title {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
                 font-size: 1.8rem;
             }
             
@@ -587,6 +981,30 @@
                 width: 25px;
                 height: 25px;
             }
+
+            .product-filters {
+                gap: 8px;
+            }
+
+            .filter-btn {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Loading States */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .loading .service-card {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
     </style>
 </head>
@@ -623,57 +1041,167 @@
         </div>
     </header>
 
-    <main>
-        <h1 class="page-title">Nossos Produtos</h1>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Nossos Produtos</h1>
+            <p class="hero-subtitle">Soluções tecnológicas completas para transformar e otimizar o seu negócio com inovação e eficiência</p>
+            
+            <div class="hero-stats">
+<div class="stat-item">
+  <span class="stat-number" data-target="900" data-suffix="+"></span>
+  <span class="stat-label">Empresas Atendidas</span>
+</div>
 
-        <div class="services-container">
-            <a href="/csemp" class="service-card" aria-label="Sistema Empresarial">
-                <img src="banner/produtosistemae.png" alt="Sistema Empresarial" class="card-image">
-                <div class="card-content">
-                    <h2>CSEMP</h2>
-                    <p>Um sistema completo para gerenciar processos internos, controle financeiro, estoque, emissão de documentos fiscais e muito mais.</p>
-                    <span class="card-button">Saiba Mais</span>
-                </div>
-            </a>
+<div class="stat-item">
+  <span class="stat-number" data-target="15" data-suffix="+"></span>
+  <span class="stat-label">Anos de Experiência</span>
+</div>
 
-            <a href="/csagricola" class="service-card" aria-label="Sistema Empresarial">
-                <img src="banner/CSAGRO.png" alt="Sistema Empresarial" class="card-image">
-                <div class="card-content">
-                    <h2>CSAGRÍCOLA</h2>
-                    <p>Um sistema completo para gerenciar propriedades rurais e condominíos agrícolas, controlar plantios, entradas e saídas de grãos, estoque, emissão de documentos fiscais e muito mais para o setor agrícola.</p>
-                    <span class="card-button">Saiba Mais</span>
-                </div>
-            </a>
-
-            <a href="/csemite" class="service-card" aria-label="Emissão de Nota Fiscal">
-                <img src="banner/csemitepordentro.jpg" alt="Emissão de Nota Fiscal" class="card-image">
-                <div class="card-content">
-                    <h2>CSEMITE</h2>
-                    <p>Facilite a emissão de notas fiscais eletrônicas com um sistema ágil, integrado e totalmente conforme
-                        as exigências fiscais atuais.</p>
-                    <span class="card-button">Saiba Mais</span>
-                </div>
-            </a>
-
-            <a href="/CertificadoDigital" class="service-card" aria-label="Certificado Digital">
-                <img src="banner/CERTIFICADODIGITLPRODUTOS.svg" alt="Certificado Digital" class="card-image">
-                <div class="card-content">
-                    <h2>Certificado Digital</h2>
-                    <p>Agilize a emissão e gerenciamento de certificados digitais para sua empresa com segurança e
-                        praticidade que só a Calory oferece.</p>
-                    <span class="card-button">Saiba Mais</span>
-                </div>
-            </a>
-
-            <a href="/equipamentos" class="service-card" aria-label="Equipamentos de Informática">
-                <img src="banner/equipamentosdentro.png" alt="Equipamentos de Informática" class="card-image">
-                <div class="card-content">
-                    <h2>Equipamentos</h2>
-                    <p>Computadores, notebooks, impressoras, mouses, teclados e todos os periféricos de alta qualidade para equipar sua empresa.</p>
-                    <span class="card-button">Saiba Mais</span>
-                </div>
-            </a>
+<div class="stat-item">
+  <span class="stat-number" data-target="24" data-suffix="/7"></span>
+  <span class="stat-label">Suporte Técnico</span>
+</div>
+            </div>
         </div>
+    </section>
+
+    <main>
+        <section class="products-section">
+            <div class="section-header">
+                <h2 class="section-title">Explore Nossos Produtos</h2>
+                <p class="section-description">Descubra as melhores soluções para cada área do seu negócio. Nossos produtos são desenvolvidos com tecnologia de ponta para oferecer máxima eficiência e resultados.</p>
+            </div>
+
+            <!-- Filtros de Produtos -->
+            <div class="product-filters">
+                <button class="filter-btn active" onclick="filterProducts('all')">Todos os Produtos</button>
+                <button class="filter-btn" onclick="filterProducts('sistemas')">Sistemas</button>
+                <button class="filter-btn" onclick="filterProducts('certificados')">Certificados</button>
+                <button class="filter-btn" onclick="filterProducts('equipamentos')">Equipamentos</button>
+            </div>
+
+            <div class="services-container" id="productsContainer">
+                <a href="/csemp" class="service-card" data-category="sistemas" aria-label="Sistema Empresarial">
+                    <div class="card-image-container">
+                        <img src="banner/produtosistemae.png" alt="Sistema Empresarial CSEMP" class="card-image">
+                        <div class="card-badge">Popular</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h2>CSEMP - Sistema Empresarial</h2>
+                        <p>Sistema completo para gerenciar processos internos, controle financeiro, estoque, emissão de documentos fiscais e muito mais para sua empresa.</p>
+                        <ul class="card-features">
+                            <li>Controle Financeiro Completo</li>
+                            <li>Gestão de Estoque Avançada</li>
+                            <li>Emissão de Documentos Fiscais</li>
+                        </ul>
+                        <div class="card-actions">
+                            <span class="card-button">Saiba Mais</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/csagricola" class="service-card" data-category="sistemas" aria-label="Sistema Agrícola">
+                    <div class="card-image-container">
+                        <img src="banner/CSAGRO.png" alt="Sistema Agrícola CSAGRÍCOLA" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h2>CSAGRÍCOLA - Sistema Rural</h2>
+                        <p>Sistema especializado para propriedades rurais e condominíos agrícolas, com controle de plantios, grãos, estoque e documentos fiscais.</p>
+                        <ul class="card-features">
+                            <li>Gestão de Propriedades Rurais</li>
+                            <li>Controle de Plantios e Safras</li>
+                            <li>Movimentação de Grãos</li>
+                        </ul>
+                        <div class="card-actions">
+                            <span class="card-button">Saiba Mais</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/csemite" class="service-card" data-category="sistemas" aria-label="Emissão de Nota Fiscal">
+                    <div class="card-image-container">
+                        <img src="banner/csemitepordentro.jpg" alt="Sistema de Emissão CSEMITE" class="card-image">
+                        <div class="card-badge">Novo</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-receipt"></i>
+                        </div>
+                        <h2>CSEMITE - Emissão Fiscal</h2>
+                        <p>Sistema ágil e integrado para emissão de notas fiscais eletrônicas, totalmente conforme as exigências fiscais atuais.</p>
+                        <ul class="card-features">
+                            <li>Emissão de NFe e NFCe</li>
+                            <li>Integração com SEFAZ</li>
+                            <li>Conformidade Fiscal Total</li>
+                        </ul>
+                        <div class="card-actions">
+                            <span class="card-button">Saiba Mais</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/CertificadoDigital" class="service-card" data-category="certificados" aria-label="Certificado Digital">
+                    <div class="card-image-container">
+                        <img src="banner/CERTIFICADODIGITLPRODUTOS.svg" alt="Certificado Digital" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h2>Certificado Digital</h2>
+                        <p>Emissão e gerenciamento de certificados digitais com máxima segurança e praticidade para sua empresa.</p>
+                        <ul class="card-features">
+                            <li>Certificados A1 e A3</li>
+                            <li>Emissão Rápida e Segura</li>
+                            <li>Suporte Técnico Especializado</li>
+                        </ul>
+                        <div class="card-actions">
+                            <span class="card-button">Saiba Mais</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/equipamentos" class="service-card" data-category="equipamentos" aria-label="Equipamentos de Informática">
+                    <div class="card-image-container">
+                        <img src="banner/equipamentosdentro.png" alt="Equipamentos de Informática" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <h2>Equipamentos de TI</h2>
+                        <p>Computadores, notebooks, impressoras e todos os periféricos de alta qualidade para equipar sua empresa com tecnologia de ponta.</p>
+                        <ul class="card-features">
+                            <li>Equipamentos de Alta Performance</li>
+                            <li>Garantia e Suporte Técnico</li>
+                            <li>Configurações Personalizadas</li>
+                        </ul>
+                        <div class="card-actions">
+                            <span class="card-button">Saiba Mais</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Seção de CTA -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2 class="cta-title">Pronto para Transformar seu Negócio?</h2>
+                <p class="cta-description">Entre em contato conosco agora mesmo e descubra como nossos produtos podem revolucionar a gestão da sua empresa.</p>
+                <a href="https://api.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento!" class="cta-button">
+                    <i class="fab fa-whatsapp"></i>
+                    Solicitar Orçamento Gratuito
+                </a>
+            </div>
+        </section>
     </main>
 
     <div class="calory-whatsapp-float">
@@ -738,7 +1266,7 @@
     </footer>
 
     <script>
-        // Menu Mobile
+        // Menu Mobile (Manter Original)
         function caloryToggleMenu() {
             const menu = document.querySelector('.calory-nav-links');
             const toggle = document.querySelector('.calory-menu-toggle');
@@ -755,7 +1283,7 @@
             });
         });
 
-        // Efeito de scroll no header
+        // Efeito de scroll no header (Manter Original)
         window.addEventListener('scroll', function() {
             const header = document.querySelector('.calory-header');
             if (window.scrollY > 50) {
@@ -769,6 +1297,174 @@
         if ('ontouchstart' in document.documentElement) {
             document.documentElement.classList.add('touch-device');
         }
+
+        // ===== NOVAS FUNCIONALIDADES =====
+
+        // Sistema de Filtros de Produtos
+        function filterProducts(category) {
+            const container = document.getElementById('productsContainer');
+            const cards = container.querySelectorAll('.service-card');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            // Atualiza botões ativos
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Adiciona efeito de loading
+            container.classList.add('filtering');
+            
+            setTimeout(() => {
+                cards.forEach(card => {
+                    const cardCategory = card.dataset.category;
+                    
+                    if (category === 'all' || cardCategory === category) {
+                        card.style.display = 'block';
+                        // Reaplica animação
+                        card.style.animation = 'none';
+                        setTimeout(() => {
+                            card.style.animation = 'cardFadeIn 0.6s ease-out forwards';
+                        }, 10);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                container.classList.remove('filtering');
+            }, 300);
+        }
+
+        // Animação de entrada dos elementos na página
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.service-card, .section-header, .cta-content');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            elements.forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Função para criar efeito de paralaxe suave
+        function createParallaxEffect() {
+            const heroSection = document.querySelector('.hero-section');
+            
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                
+                if (heroSection) {
+                    heroSection.style.transform = `translateY(${rate}px)`;
+                }
+            });
+        }
+
+        // Contador animado nas estatísticas
+        function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                const targetNumber = parseInt(target.dataset.target);
+                const suffix = target.dataset.suffix || "";
+                const increment = targetNumber / 60; // 60 frames para 1 segundo
+                let current = 0;
+
+                const updateCounter = () => {
+                    if (current < targetNumber) {
+                        current += increment;
+                        target.textContent = Math.floor(current) + suffix;
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        target.textContent = targetNumber + suffix;
+                    }
+                };
+
+                updateCounter();
+                observer.unobserve(target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => observer.observe(counter));
+}
+
+
+        // Inicialização quando a página carrega
+        document.addEventListener('DOMContentLoaded', function() {
+            animateOnScroll();
+            createParallaxEffect();
+            animateCounters();
+            
+            // Adiciona efeito hover nos cards
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+
+        // Função para criar feedback visual nos botões
+        document.querySelectorAll('.card-button, .cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Criar efeito ripple
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // CSS dinâmico para o efeito ripple
+        const rippleCSS = `
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
+            }
+            
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        
+        const style = document.createElement('style');
+        style.textContent = rippleCSS;
+        document.head.appendChild(style);
     </script>
 
 </body>

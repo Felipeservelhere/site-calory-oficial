@@ -20,87 +20,30 @@
     <meta property="twitter:description" content="Controle total do seu negócio: gerencie estoque, clientes, finanças e documentos fiscais com o sistema empresarial da Calory. Experimente grátis!">
     <meta property="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png">
 
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    
     <style>
-        /* CSS Variables - Design System */
+        /* Design System Variables */
         :root {
+            --primary: 208 100% 50%;  /* #007bff */
+            --primary-light: 197 100% 59%;  /* #00bfff */
             --background: 0 0% 100%;
             --foreground: 222.2 84% 4.9%;
-            --card: 0 0% 100%;
-            --card-foreground: 222.2 84% 4.9%;
-            --popover: 0 0% 100%;
-            --popover-foreground: 222.2 84% 4.9%;
-            --primary: 208 100% 50%;  /* #007bff - cor original */
-            --primary-foreground: 210 40% 98%;  
-            --primary-light: 197 100% 59%;  /* #00bfff - cor original */
-            --secondary: 210 40% 96%;
-            --secondary-foreground: 222.2 47.4% 11.2%;
-            --muted: 210 40% 96%;
             --muted-foreground: 215.4 16.3% 46.9%;
-            --accent: 210 40% 96%;
-            --accent-foreground: 222.2 47.4% 11.2%;
-            --destructive: 0 72.22% 50.59%;
-            --destructive-foreground: 210 40% 98%;
+            --card: 0 0% 100%;
             --border: 214.3 31.8% 91.4%;
-            --input: 214.3 31.8% 91.4%;
-            --ring: 208 100% 50%;
             
-            /* Custom Design Tokens - cores originais Calory */
+            /* Custom tokens */
             --gradient-primary: linear-gradient(135deg, hsl(208 100% 50%), hsl(197 100% 59%));
-            --gradient-hero: linear-gradient(135deg, hsl(186 100% 94%), hsl(197 100% 85%));
+            --gradient-hero: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             --shadow-glow: 0 4px 15px hsl(208 100% 50% / 0.3);
             --shadow-float: 0 10px 30px -10px hsl(var(--primary) / 0.2);
             --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .dark {
-            --background: 222.2 84% 4.9%;
-            --foreground: 210 40% 98%;
-            --card: 222.2 84% 4.9%;
-            --card-foreground: 210 40% 98%;
-            --popover: 222.2 84% 4.9%;
-            --popover-foreground: 210 40% 98%;
-            --primary: 213 94% 68%;
-            --primary-foreground: 222.2 47.4% 11.2%;
-            --secondary: 217.2 32.6% 17.5%;
-            --secondary-foreground: 210 40% 98%;
-            --muted: 217.2 32.6% 17.5%;
-            --muted-foreground: 215 20.2% 65.1%;
-            --accent: 217.2 32.6% 17.5%;
-            --accent-foreground: 210 40% 98%;
-            --destructive: 0 62.8% 30.6%;
-            --destructive-foreground: 210 40% 98%;
-            --border: 217.2 32.6% 17.5%;
-            --input: 217.2 32.6% 17.5%;
-            --ring: 213 94% 68%;
-            
-            --gradient-hero: linear-gradient(135deg, hsl(217.2 32.6% 17.5%), hsl(222.2 84% 4.9%));
-        }
-
-        /* Reset and Base Styles */
+        /* Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        .btn-primary {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            box-shadow: var(--shadow-glow);
-        }
-
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        .btn-lg {
-            padding: 1rem 2rem;
-            font-size: 1.125rem;
         }
 
         body {
@@ -139,67 +82,14 @@
             }
         }
 
-        @keyframes bounceGentle {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        @keyframes chartGrow {
+            0% { transform: scaleY(0.8); }
+            100% { transform: scaleY(1.1); }
         }
 
         @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0;
-        }
-
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .animate-bounce-gentle {
-            animation: bounceGentle 2s infinite;
-        }
-
-        .animate-pulse {
-            animation: pulse 2s infinite;
-        }
-
-        /* Utility Classes */
-        .transition-smooth {
-            transition: var(--transition-smooth);
-        }
-
-        .shadow-glow {
-            box-shadow: var(--shadow-glow);
-        }
-
-        .shadow-float {
-            box-shadow: var(--shadow-float);
-        }
-
-        .bg-gradient-primary {
-            background: var(--gradient-primary);
-        }
-
-        .bg-gradient-hero {
-            background: var(--gradient-hero);
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         /* Header Styles */
@@ -210,11 +100,17 @@
             right: 0;
             z-index: 1000;
             padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             transition: var(--transition-smooth);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .header.scrolled {
             padding: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.95);
             box-shadow: var(--shadow-float);
         }
 
@@ -244,107 +140,59 @@
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition-smooth);
+            position: relative;
+            padding: 8px 0;
         }
 
         .nav-link:hover {
             color: hsl(var(--primary));
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            white-space: nowrap;
-            border-radius: 50px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: var(--transition-smooth);
+        .nav-link:hover::after {
+            width: 100%;
         }
 
-        .calory-nav-links {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .calory-nav-links a {
-            font-weight: 600;
-            color: #333;
-            text-decoration: none;
-            font-size: 1rem;
-            position: relative;
-            padding: 8px 0;
-            transition: color 0.3s ease;
-        }
-
-        .calory-nav-links a:not(.calory-link-azul):hover {
-            color: #007bff;
-        }
-
-        .calory-nav-links a:not(.calory-link-azul)::after {
+        .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
             bottom: 0;
             left: 0;
-            background-color: #007bff;
+            background-color: hsl(var(--primary));
             transition: width 0.3s ease;
         }
 
-        .calory-link-azul {
-            background: linear-gradient(135deg, #007bff, #00bfff);
-            color: #fff !important;
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white !important;
             padding: 12px 18px !important;
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-glow);
             position: relative;
             overflow: hidden;
         }
 
-        .calory-link-azul i {
+        .btn-primary i {
             margin-right: 10px;
             transition: transform 0.3s ease;
         }
 
-        .calory-link-azul:hover {
-            background: linear-gradient(135deg, #0069d9, #0095ff);
+        .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+            box-shadow: 0 6px 20px hsl(208 100% 50% / 0.4);
         }
 
-        .calory-link-azul:hover i {
+        .btn-primary:hover i {
             transform: translateX(5px);
         }
 
-        .calory-link-azul::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
-            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .calory-link-azul:hover::before {
-            opacity: 0.4;
-        }
-
-        .calory-nav-links a:not(.calory-link-azul):hover::after {
-            width: 100%;
-        }
-
-        /* Menu Hamburguer Original */
+        /* Mobile Menu */
         .mobile-menu-btn {
             display: none;
             width: 30px;
@@ -362,7 +210,7 @@
             position: absolute;
             height: 3px;
             width: 100%;
-            background: #007bff;
+            background: hsl(var(--primary));
             border-radius: 3px;
             opacity: 1;
             left: 0;
@@ -370,18 +218,10 @@
             transition: .25s ease-in-out;
         }
 
-        .mobile-menu-btn span:nth-child(1) {
-            top: 0px;
-        }
-
+        .mobile-menu-btn span:nth-child(1) { top: 0px; }
         .mobile-menu-btn span:nth-child(2),
-        .mobile-menu-btn span:nth-child(3) {
-            top: 10px;
-        }
-
-        .mobile-menu-btn span:nth-child(4) {
-            top: 20px;
-        }
+        .mobile-menu-btn span:nth-child(3) { top: 10px; }
+        .mobile-menu-btn span:nth-child(4) { top: 20px; }
 
         .mobile-menu-btn.active span:nth-child(1) {
             top: 10px;
@@ -403,7 +243,7 @@
             left: 50%;
         }
 
-        /* Hero Section */
+        /* Hero Section - NEW MODERN DESIGN */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -412,14 +252,28 @@
             position: relative;
             overflow: hidden;
             margin-top: 4rem;
+            background: var(--gradient-hero);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23007bff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            opacity: 0.4;
         }
 
         .hero-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
             align-items: center;
-            padding: 2rem 0;
+            padding: 3rem 0;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-text {
@@ -429,44 +283,225 @@
         .hero-title {
             font-size: 3.5rem;
             font-weight: 700;
-            line-height: 1.2;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
-            color: hsl(var(--foreground));
-        }
-
-        .hero-title .highlight {
-            color: hsl(var(--primary));
+            background: linear-gradient(135deg, #1e293b, hsl(var(--primary)));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-description {
             font-size: 1.25rem;
             color: hsl(var(--muted-foreground));
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             line-height: 1.6;
+            max-width: 500px;
         }
 
-        .hero-image {
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: hsl(var(--primary));
+            display: block;
+        }
+
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: hsl(var(--muted-foreground));
+            margin-top: 0.25rem;
+        }
+
+        .btn-lg {
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+        }
+
+        /* Dashboard Mockup - Pure CSS */
+        .hero-visual {
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .hero-image img {
+        .dashboard-mockup {
             width: 100%;
-            height: auto;
+            max-width: 500px;
+            background: white;
             border-radius: 1rem;
-            box-shadow: var(--shadow-float);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
         }
 
+        .dashboard-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3rem;
+            background: var(--gradient-primary);
+            border-radius: 1rem 1rem 0 0;
+        }
+
+        .dashboard-content {
+            margin-top: 2rem;
+        }
+
+        .dashboard-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dashboard-avatar {
+            width: 3rem;
+            height: 3rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .dashboard-greeting h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        .dashboard-greeting p {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin: 0;
+        }
+
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dashboard-card {
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            border-left: 4px solid hsl(var(--primary));
+        }
+
+        .dashboard-card-title {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .dashboard-card-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .dashboard-chart {
+            height: 4rem;
+            background: linear-gradient(135deg, hsl(208 100% 50% / 0.1), hsl(197 100% 59% / 0.05));
+            border-radius: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: end;
+            height: 100%;
+            padding: 0.5rem;
+            gap: 0.25rem;
+        }
+
+        .chart-bar {
+            background: var(--gradient-primary);
+            border-radius: 2px;
+            flex: 1;
+            animation: chartGrow 2s ease-out infinite alternate;
+        }
+
+        .chart-bar:nth-child(1) { height: 60%; animation-delay: 0s; }
+        .chart-bar:nth-child(2) { height: 80%; animation-delay: 0.2s; }
+        .chart-bar:nth-child(3) { height: 40%; animation-delay: 0.4s; }
+        .chart-bar:nth-child(4) { height: 90%; animation-delay: 0.6s; }
+        .chart-bar:nth-child(5) { height: 70%; animation-delay: 0.8s; }
+        .chart-bar:nth-child(6) { height: 50%; animation-delay: 1s; }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .floating-icon {
+            position: absolute;
+            width: 3rem;
+            height: 3rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: hsl(var(--primary));
+            animation: float 3s ease-in-out infinite;
+            box-shadow: 0 4px 15px hsl(208 100% 50% / 0.2);
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 10%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-icon:nth-child(2) {
+            bottom: 20%;
+            left: 5%;
+            animation-delay: 1s;
+        }
+
+        .floating-icon:nth-child(3) {
+            top: 50%;
+            right: -2rem;
+            animation-delay: 2s;
+        }
+
+        /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
             bottom: 2rem;
             left: 50%;
-            top:80%;
             transform: translateX(-50%);
             cursor: pointer;
+            animation: float 2s ease-in-out infinite;
         }
 
-        /* Seta de scroll original */
-        .scroll-indicator .scroll-icon {
+        .scroll-icon {
             width: 38px;
             height: 55px;
             border: 2px solid #8f8f8f;
@@ -477,7 +512,7 @@
             padding-top: 10px;
         }
 
-        .scroll-indicator .scroll-icon::after {
+        .scroll-icon::after {
             content: '';
             display: block;
             width: 12px;
@@ -548,6 +583,8 @@
             justify-content: center;
             margin: 0 auto 1.5rem;
             transition: var(--transition-smooth);
+            color: white;
+            font-size: 1.5rem;
         }
 
         .feature-card:hover .feature-icon {
@@ -606,6 +643,7 @@
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
             transition: var(--transition-smooth);
             text-decoration: none;
+            animation: pulse 2s infinite;
         }
 
         .whatsapp-btn:hover {
@@ -751,6 +789,10 @@
                 font-size: 1.125rem;
             }
 
+            .hero-stats {
+                justify-content: center;
+            }
+
             .features-title {
                 font-size: 2rem;
             }
@@ -779,7 +821,7 @@
                 height: 1.5rem;
             }
             
-            .calory-link-azul {
+            .btn-primary {
                 padding: 10px 16px !important;
                 font-size: 0.9rem;
             }
@@ -810,13 +852,32 @@
             .logo img {
                 height: 2.5rem;
             }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Animation States */
+        .animate-fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .desktop-only { display: inline-flex !important; }
+        .mobile-only { display: none !important; }
+
+        @media (max-width: 768px) {
+            .desktop-only { display: none !important; }
+            .mobile-only { display: inline-flex !important; }
         }
     </style>
 </head>
 
 <body>
     <!-- Header -->
-    <header class="header glass" id="header">
+    <header class="header" id="header">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
@@ -830,13 +891,13 @@
                     
                     <!-- Desktop CTA -->
                     <a href="https://web.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento%20para%20o%20meu%20sistema!" 
-                       target="_blank" rel="noopener noreferrer" class="calory-link-azul desktop-only">
+                       target="_blank" rel="noopener noreferrer" class="btn-primary desktop-only">
                         <i class="fas fa-rocket"></i> Obtenha o sistema
                     </a>
 
                     <!-- Mobile CTA -->
                     <a href="https://api.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento%20para%20o%20meu%20sistema!" 
-                       target="_blank" rel="noopener noreferrer" class="calory-link-azul mobile-only">
+                       target="_blank" rel="noopener noreferrer" class="btn-primary mobile-only">
                         <i class="fas fa-rocket"></i> OBTER SISTEMA AGORA
                     </a>
                 </nav>
@@ -852,37 +913,108 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero bg-gradient-hero" id="inicio">
+    <section class="hero" id="inicio">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title animate-fade-in-up">
                         Sistema Empresarial
-                        <span class="highlight">Completo</span>
+                        Completo
                     </h1>
                     
                     <p class="hero-description animate-fade-in-up" style="animation-delay: 0.2s;">
                         Controle total do seu negócio: gerencie estoque, clientes, finanças e documentos fiscais, 
                         tudo em uma única plataforma integrada.
                     </p>
+
+                    <div class="hero-stats animate-fade-in-up" style="animation-delay: 0.3s;">
+                        <div class="hero-stat">
+                            <span class="hero-stat-number">900+</span>
+                            <span class="hero-stat-label">Empresas</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number">15+</span>
+                            <span class="hero-stat-label">Anos</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number">24/7</span>
+                            <span class="hero-stat-label">Suporte</span>
+                        </div>
+                    </div>
                     
                     <div class="animate-fade-in-up" style="animation-delay: 0.4s;">
-                        <a href="/#calory-banner-content" class="btn btn-primary btn-lg">
-                            Solicite um Orçamento Personalizado
+                        <a href="https://web.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento%20para%20o%20meu%20sistema!" 
+                           target="_blank" rel="noopener noreferrer" class="btn-primary btn-lg desktop-only">
+                            <i class="fas fa-comment"></i> Solicite um Orçamento Personalizado
+                        </a>
+                        <a href="https://api.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20orçamento%20para%20o%20meu%20sistema!" 
+                           target="_blank" rel="noopener noreferrer" class="btn-primary btn-lg mobile-only">
+                            <i class="fas fa-comment"></i> Solicitar Orçamento
                         </a>
                     </div>
                 </div>
 
-                <div class="hero-image animate-fade-in-up" style="animation-delay: 0.3s;">
-                    <div class="animate-float">
-                        <img src="banner/ChatGPT_Image_1_de_jul._de_2025__16_05_29-removebg-preview.png" alt="Sistema Empresarial">
+                <div class="hero-visual animate-fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="dashboard-mockup">
+                        <div class="dashboard-content">
+                            <div class="dashboard-header">
+                                <div class="dashboard-avatar">CS</div>
+                                <div class="dashboard-greeting">
+                                    <h3>Bem-vindo ao CSEMP</h3>
+                                    <p>Sistema Empresarial Completo</p>
+                                </div>
+                            </div>
+
+                            <div class="dashboard-cards">
+                                <div class="dashboard-card">
+                                    <div class="dashboard-card-title">Vendas Hoje</div>
+                                    <div class="dashboard-card-value">R$ 24.680</div>
+                                </div>
+                                <div class="dashboard-card">
+                                    <div class="dashboard-card-title">Produtos</div>
+                                    <div class="dashboard-card-value">1.247</div>
+                                </div>
+                                <div class="dashboard-card">
+                                    <div class="dashboard-card-title">Clientes</div>
+                                    <div class="dashboard-card-value">432</div>
+                                </div>
+                                <div class="dashboard-card">
+                                    <div class="dashboard-card-title">Notas Emitidas</div>
+                                    <div class="dashboard-card-value">89</div>
+                                </div>
+                            </div>
+
+                            <div class="dashboard-chart">
+                                <div class="chart-bars">
+                                    <div class="chart-bar"></div>
+                                    <div class="chart-bar"></div>
+                                    <div class="chart-bar"></div>
+                                    <div class="chart-bar"></div>
+                                    <div class="chart-bar"></div>
+                                    <div class="chart-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Elements -->
+                    <div class="floating-elements">
+                        <div class="floating-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="floating-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="floating-icon">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="scroll-indicator animate-bounce-gentle" onclick="scrollToSection('features')">
+        <div class="scroll-indicator" onclick="scrollToSection('features')">
             <div class="scroll-icon"></div>
         </div>
     </section>
@@ -898,46 +1030,46 @@
             </div>
 
             <div class="features-grid">
-                <a href="/Inicio" class="feature-card animate-fade-in-up" style="animation-delay: 0s;">
+                <a href="/Inicio" class="feature-card">
                     <div class="feature-icon">
-                        <i data-lucide="bar-chart-3" width="32" height="32" color="white"></i>
+                        <i class="fas fa-chart-pie"></i>
                     </div>
-                    <h3 class="feature-title">Tela Inicial</h3>
+                    <h3 class="feature-title">Dashboard Inteligente</h3>
                     <p class="feature-description">
                         Visão geral completa: acompanhe os principais indicadores do seu negócio em tempo real.
                     </p>
                     <div class="feature-hint">Clique para saber mais</div>
                 </a>
 
-                <a href="/estoque" class="feature-card animate-fade-in-up" style="animation-delay: 0.1s;">
+                <a href="/estoque" class="feature-card">
                     <div class="feature-icon">
-                        <i data-lucide="package" width="32" height="32" color="white"></i>
+                        <i class="fas fa-boxes"></i>
                     </div>
-                    <h3 class="feature-title">Estoque</h3>
+                    <h3 class="feature-title">Controle de Estoque</h3>
                     <p class="feature-description">
-                        Controle de estoque inteligente: evite perdas e otimize suas compras.
+                        Gestão inteligente de produtos: controle entrada, saída e níveis mínimos automaticamente.
                     </p>
                     <div class="feature-hint">Clique para saber mais</div>
                 </a>
 
-                <a href="/Cliente" class="feature-card animate-fade-in-up" style="animation-delay: 0.2s;">
+                <a href="/Cliente" class="feature-card">
                     <div class="feature-icon">
-                        <i data-lucide="users" width="32" height="32" color="white"></i>
+                        <i class="fas fa-user-friends"></i>
                     </div>
-                    <h3 class="feature-title">Clientes</h3>
+                    <h3 class="feature-title">Gestão de Clientes</h3>
                     <p class="feature-description">
-                        Relacionamento com o cliente aprimorado: conheça seus clientes e personalize o atendimento.
+                        CRM completo: cadastro, histórico de compras e relacionamento personalizado com clientes.
                     </p>
                     <div class="feature-hint">Clique para saber mais</div>
                 </a>
 
-                <a href="/Documentos" class="feature-card animate-fade-in-up" style="animation-delay: 0.3s;">
+                <a href="/Documentos" class="feature-card">
                     <div class="feature-icon">
-                        <i data-lucide="file-text" width="32" height="32" color="white"></i>
+                        <i class="fas fa-file-invoice-dollar"></i>
                     </div>
-                    <h3 class="feature-title">Documentos Fiscais</h3>
+                    <h3 class="feature-title">Emissão Fiscal</h3>
                     <p class="feature-description">
-                        Emissão fiscal simplificada: emita notas fiscais de forma rápida e segura.
+                        Documentos fiscais automatizados: NFe, NFCe e cupons fiscais em conformidade total.
                     </p>
                     <div class="feature-hint">Clique para saber mais</div>
                 </a>
@@ -948,12 +1080,12 @@
                     Pronto para transformar a gestão do seu negócio?
                 </p>
                 <a href="https://web.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20conhecer%20melhor%20o%20sistema!" 
-                target="_blank" rel="noopener noreferrer" class="mobile-only btn btn-primary btn-lg">
-                    <i class="fas fa-comment" style="margin-right: 8px;"></i> Fale Conosco no WhatsApp
+                target="_blank" rel="noopener noreferrer" class="btn-primary btn-lg desktop-only">
+                    <i class="fas fa-comment"></i> Fale Conosco no WhatsApp
                 </a>
-                <a href="https://web.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20conhecer%20melhor%20o%20sistema!" 
-                target="_blank" rel="noopener noreferrer" class="desktop-only btn btn-primary btn-lg">
-                    <i class="fas fa-comment" style="margin-right: 8px;"></i> Fale Conosco no WhatsApp
+                <a href="https://api.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20conhecer%20melhor%20o%20sistema!" 
+                target="_blank" rel="noopener noreferrer" class="btn-primary btn-lg mobile-only">
+                    <i class="fas fa-comment"></i> Falar no WhatsApp
                 </a>
             </div>
         </div>
@@ -993,13 +1125,13 @@
                     <h3>Redes Sociais</h3>
                     <div class="social-links">
                         <a href="https://www.facebook.com/calorysistemas/" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <i data-lucide="facebook" width="20" height="20"></i>
+                            <i class="fab fa-facebook-f"></i>
                         </a>
                         <a href="https://www.instagram.com/calorysistemas/" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <i data-lucide="instagram" width="20" height="20"></i>
+                            <i class="fab fa-instagram"></i>
                         </a>
                         <a href="https://www.linkedin.com/company/calory-sistema" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <i data-lucide="linkedin" width="20" height="20"></i>
+                            <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
                     <p>Siga-nos para ficar por dentro das novidades!</p>
@@ -1013,7 +1145,7 @@
     </footer>
 
     <!-- WhatsApp Float -->
-    <div class="whatsapp-float animate-pulse">
+    <div class="whatsapp-float">
         <!-- Desktop -->
         <a href="https://web.whatsapp.com/send?phone=5544999939313&text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20tirar%20algumas%20dúvidas!" 
            target="_blank" rel="noopener noreferrer" class="whatsapp-btn desktop-only">
@@ -1028,9 +1160,6 @@
     </div>
 
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
         // Mobile menu functionality
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const nav = document.getElementById('nav');
@@ -1098,23 +1227,6 @@
             el.style.animationPlayState = 'paused';
             observer.observe(el);
         });
-
-        // Add responsive classes based on screen size
-        function updateResponsiveClasses() {
-            const isMobile = window.innerWidth <= 768;
-            
-            document.querySelectorAll('.desktop-only').forEach(el => {
-                el.style.display = isMobile ? 'none' : 'inline-flex';
-            });
-            
-            document.querySelectorAll('.mobile-only').forEach(el => {
-                el.style.display = isMobile ? 'inline-flex' : 'none';
-            });
-        }
-
-        // Initial call and resize listener
-        updateResponsiveClasses();
-        window.addEventListener('resize', updateResponsiveClasses);
 
         // Add smooth animations on page load
         window.addEventListener('load', () => {
