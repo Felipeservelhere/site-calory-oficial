@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Certificado Digital - Calory</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -257,7 +257,7 @@
             box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
         }
 
-        /* Formulário Interativo (PARA DESKTOP E MOBILE) */
+        /* Formulário Interativo MELHORADO */
         .hero-form {
             padding: 30px 20px;
             margin-top: 70px;
@@ -267,154 +267,393 @@
 
         .cert-card {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,33,199,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0,33,199,0.12);
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #00bfff, #007bff);
+            background-size: 200% 100%;
+            animation: gradient-shift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .cert-card h2 {
-            color: #0021c7;
-            font-size: 2rem;
-            margin-bottom: 20px;
+            color: #007bff;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
             text-align: center;
+            font-weight: 700;
+        }
+
+        .cert-card .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
         }
 
         .cert-options {
             display: flex;
-            margin: 20px 0;
-            border-radius: 8px;
+            margin: 25px 0;
+            border-radius: 12px;
             overflow: hidden;
-            border: 1px solid #ddd;
+            border: 1px solid #e0e0e0;
+            background: #f8f9fa;
         }
 
         .cert-type {
             flex: 1;
-            padding: 15px;
+            padding: 18px;
             border: none;
-            background: #f5f5f5;
-            color: #555;
+            background: transparent;
+            color: #666;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 1rem;
+            position: relative;
         }
 
         .cert-type.active {
-            background: #0021c7;
+            background: #007bff;
             color: white;
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .cert-type:hover:not(.active) {
+            background: rgba(0, 123, 255, 0.1);
+            color: #007bff;
         }
 
         .cert-form {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: none;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .cert-form.active {
+            opacity: 1;
+            transform: translateY(0);
             display: block;
         }
 
-        .cert-form input {
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
             width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            padding: 18px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
             font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fff;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .input-group input.valid {
+            border-color: #28a745;
+            background: linear-gradient(90deg, #fff 95%, #d4edda 100%);
+        }
+
+        .input-group input.invalid {
+            border-color: #dc3545;
+            background: linear-gradient(90deg, #fff 95%, #f8d7da 100%);
+        }
+
+        .input-group .input-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .input-group .input-icon.show {
+            opacity: 1;
+        }
+
+        .input-group .input-icon.valid {
+            color: #28a745;
+        }
+
+        .input-group .input-icon.invalid {
+            color: #dc3545;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            min-height: 20px;
+        }
+
+        .error-message.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .cta-button {
             width: 100%;
-            padding: 15px;
-            background-color: #0021c7;
+            padding: 18px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s ease;
-            margin-top: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .cta-button:hover {
-            background-color: #001ba8;
+        .cta-button:hover:not(:disabled) {
+            background: linear-gradient(135deg, #0056b3, #003d82);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+        }
+
+        .cta-button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .cta-button .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        .cta-button.loading .loading-spinner {
+            display: inline-block;
+        }
+
+        .cta-button.loading .button-text {
+            opacity: 0.7;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .cert-benefits {
-            margin-top: 25px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0e0;
         }
 
         .cert-benefits p {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
-            color: #0021c7;
+            margin-bottom: 12px;
+            color: #007bff;
             font-weight: 500;
+            transform: translateX(-10px);
+            opacity: 0;
+            animation: slideInLeft 0.6s ease forwards;
+        }
+
+        .cert-benefits p:nth-child(1) { animation-delay: 0.1s; }
+        .cert-benefits p:nth-child(2) { animation-delay: 0.2s; }
+        .cert-benefits p:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes slideInLeft {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         .cert-benefits i {
-            margin-right: 10px;
-            color: #00c851;
+            margin-right: 12px;
+            color: #28a745;
             font-size: 1.2rem;
+            animation: pulse 2s infinite;
         }
 
-        /* Seção de Informações */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Progress Bar */
+        .form-progress {
+            margin-bottom: 25px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #007bff, #00bfff);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 2px;
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Seção de Informações MELHORADA */
         .additional-info {
-            padding: 60px 5%;
-            background-color: #fff;
+            padding: 80px 5% 60px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        .additional-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #00bfff);
+            border-radius: 2px;
         }
 
         .additional-info h2 {
-            font-size: 2.2rem;
-            color: #0021c7;
-            margin-bottom: 30px;
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 20px;
             text-align: center;
+            font-weight: 700;
         }
 
-        .additional-info p {
-            font-size: 1.1rem;
+        .additional-info .section-subtitle {
+            font-size: 1.2rem;
             line-height: 1.8;
-            color: #555;
-            margin-bottom: 25px;
+            color: #666;
+            margin-bottom: 40px;
             text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .documents-required {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 10px;
-            margin: 40px auto;
-            max-width: 800px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px auto;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0,33,199,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .documents-required::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #00bfff, #28a745);
+            background-size: 200% 100%;
+            animation: gradient-shift 4s ease-in-out infinite;
         }
 
         .documents-required h3 {
-            color: #0021c7;
-            margin-bottom: 20px;
+            color: #007bff;
+            margin-bottom: 30px;
             text-align: center;
+            font-size: 1.8rem;
+            font-weight: 600;
         }
 
         .documents-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 25px;
         }
 
         .document-type {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 123, 255, 0.1);
+        }
+
+        .document-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            border-color: rgba(0, 123, 255, 0.2);
         }
 
         .document-type h4 {
-            color: #0021c7;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #0021c7;
-            padding-bottom: 8px;
+            color: #007bff;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .document-type h4 i {
+            margin-right: 10px;
+            font-size: 1.2rem;
         }
 
         .document-type ul {
@@ -422,38 +661,55 @@
         }
 
         .document-type li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: flex-start;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .document-type li:hover {
+            background: rgba(0, 123, 255, 0.05);
         }
 
         .document-type li i {
-            color: #00c851;
-            margin-right: 8px;
+            color: #28a745;
+            margin-right: 12px;
             margin-top: 3px;
+            font-size: 1.1rem;
         }
 
-        .emitir-button-container {
+        .document-type li span {
+            font-weight: 500;
+            color: #444;
+        }
+
+        /* Security Badge */
+        .security-badge {
             text-align: center;
-            margin-top: 30px;
-        }
-
-        .emitir-button {
-            display: inline-block;
-            padding: 15px 30px;
-            background-color: #0021c7;
+            margin-top: 40px;
+            padding: 25px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border-radius: 15px;
             color: white;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
         }
 
-        .emitir-button:hover {
-            background-color: #001ba8;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,33,199,0.2);
+        .security-badge i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .security-badge h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .security-badge p {
+            font-size: 1rem;
+            opacity: 0.95;
         }
 
         .calory-whatsapp-float {
@@ -649,8 +905,20 @@
                 margin-top: 60px;
             }
 
+            .cert-card {
+                padding: 30px 25px;
+            }
+
+            .cert-card h2 {
+                font-size: 1.8rem;
+            }
+
             .documents-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .additional-info h2 {
+                font-size: 2rem;
             }
         }
 
@@ -663,21 +931,62 @@
                 padding: 12px 8px;
                 font-size: 0.9rem;
             }
+
+            .cert-card {
+                padding: 25px 20px;
+            }
+
+            .input-group input {
+                padding: 16px 12px;
+            }
             
-            .whatsapp-float {
+            .calory-whatsapp-float {
                 bottom: 15px;
                 right: 15px;
             }
             
-            .whatsapp-float a {
+            .calory-whatsapp-float .calory-whatsapp-icon {
                 width: 50px;
                 height: 50px;
             }
             
-            .whatsapp-float img {
+            .calory-whatsapp-float .calory-whatsapp-icon img {
                 width: 25px;
                 height: 25px;
             }
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+            max-width: 300px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+
+        .toast.error {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+        }
+
+        .toast.info {
+            background: linear-gradient(135deg, #007bff, #0056b3);
         }
     </style>
 </head>
@@ -714,68 +1023,129 @@
         </div>
     </header>
 
-    <!-- Formulário Interativo -->
+    <!-- Formulário Interativo MELHORADO -->
     <div class="hero-form">
         <div class="cert-card">
-            <h2>Emita seu Certificado Digital Hoje!</h2>
+            <h2>Emita seu Certificado Digital</h2>
+            <p class="subtitle">Processo 100% online, rápido e seguro</p>
+            
+            <div class="form-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">Preencha seus dados básicos</div>
+            </div>
             
             <div class="cert-options">
-                <button class="cert-type active" data-type="pf">Pessoa Física</button>
-                <button class="cert-type" data-type="pj">Pessoa Jurídica</button>
+                <button class="cert-type active" data-type="pf">
+                    <i class="fas fa-user"></i> Pessoa Física
+                </button>
+                <button class="cert-type" data-type="pj">
+                    <i class="fas fa-building"></i> Pessoa Jurídica
+                </button>
             </div>
 
             <div class="cert-form active" id="pf-form">
-                <input type="text" placeholder="CPF" required id="cpf">
-                <input type="text" placeholder="Nome completo" required id="nome-pf">
-                <input type="email" placeholder="E-mail" required id="email-pf">
-                <input type="tel" placeholder="Whatsapp" required id="telefone-pf">
-                <button class="cta-button" id="solicitar-pf">Avançar</button>
+                <div class="input-group">
+                    <input type="text" placeholder="CPF" required id="cpf" maxlength="14">
+                    <div class="input-icon"><i class="fas fa-check"></i></div>
+                    <div class="error-message" id="cpf-error"></div>
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder="Nome completo" required id="nome-pf">
+                    <div class="input-icon"><i class="fas fa-check"></i></div>
+                    <div class="error-message" id="nome-pf-error"></div>
+                </div>
+                <div class="input-group">
+                    <input type="email" placeholder="E-mail" required id="email-pf">
+                    <div class="input-icon"><i class="fas fa-check"></i></div>
+                    <div class="error-message" id="email-pf-error"></div>
+                </div>
+                <div class="input-group">
+                    <input type="tel" placeholder="WhatsApp" required id="telefone-pf" maxlength="15">
+                    <div class="input-icon"><i class="fas fa-check"></i></div>
+                    <div class="error-message" id="telefone-pf-error"></div>
+                </div>
+                <button class="cta-button" id="solicitar-pf">
+                    <div class="loading-spinner"></div>
+                    <span class="button-text">
+                        <i class="fas fa-arrow-right"></i> Continuar no WhatsApp
+                    </span>
+                </button>
             </div>
 
             <div class="cert-form" id="pj-form">
-                <input type="text" placeholder="CNPJ" required id="cnpj">
-                <input type="text" placeholder="Nome do responsável" required id="nome-pj">
-                <input type="email" placeholder="E-mail corporativo" required id="email-pj">
-                <input type="tel" placeholder="Whatsapp" required id="telefone-pj">
-                <button class="cta-button" id="solicitar-pj">Avançar</button>
+                <div class="input-group">
+                    <input type="text" placeholder="CNPJ" required id="cnpj" maxlength="18">
+                    <div class="input-icon"><i class="fas fa-check"></i></div>
+                    <div class="error-message" id="cnpj-error"></div>
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder="Nome do responsável" required id="nome-pj">
+                    <div class="input-icon"><i class="fas fa-check"></i></div>
+                    <div class="error-message" id="nome-pj-error"></div>
+                </div>
+                <div class="input-group">
+                    <input type="email" placeholder="E-mail corporativo" required id="email-pj">
+                    <div class="input-icon"><i class="fas fa-check"></i></div>
+                    <div class="error-message" id="email-pj-error"></div>
+                </div>
+                <div class="input-group">
+                    <input type="tel" placeholder="WhatsApp" required id="telefone-pj" maxlength="15">
+                    <div class="input-icon"><i class="fas fa-check"></i></div>
+                    <div class="error-message" id="telefone-pj-error"></div>
+                </div>
+                <button class="cta-button" id="solicitar-pj">
+                    <div class="loading-spinner"></div>
+                    <span class="button-text">
+                        <i class="fas fa-arrow-right"></i> Continuar no WhatsApp
+                    </span>
+                </button>
             </div>
 
             <div class="cert-benefits">
-                <p><i class="fas fa-check-circle"></i> Processo 100% online</p>
-                <p><i class="fas fa-check-circle"></i> Aprovação em 5 minutos após envio dos documentos</p>
-                <p><i class="fas fa-check-circle"></i> Suporte especializado</p>
+                <p><i class="fas fa-check-circle"></i> Processo 100% online e seguro</p>
+                <p><i class="fas fa-clock"></i> Aprovação em até 5 minutos</p>
+                <p><i class="fas fa-headset"></i> Suporte especializado gratuito</p>
             </div>
         </div>
     </div>
 
     <section class="additional-info">
         <h2>Documentos Necessários</h2>
-        <p>Tenha em mãos os documentos necessários para agilizar seu atendimento</p>
+        <p class="section-subtitle">Prepare seus documentos com antecedência para agilizar o processo de emissão do seu certificado digital</p>
         
         <div class="documents-required">
-            <h3>O que você precisa para emitir seu certificado</h3>
+            <h3><i class="fas fa-file-alt"></i> Documentação Obrigatória</h3>
             <div class="documents-grid">
                 <div class="document-type">
-                    <h4>Pessoa Física (e-CPF)</h4>
+                    <h4><i class="fas fa-user"></i> Pessoa Física (e-CPF)</h4>
                     <ul>
-                        <li><i class="fas fa-check"></i> Foto ou digital do CNH/RG</li>
-                        <li><i class="fas fa-check"></i> E-mail válido</li>
-                        <li><i class="fas fa-check"></i> Telefone para contato</li>
-                        <li><i class="fas fa-check"></i> Endereço completo com CEP</li>
+                        <li><i class="fas fa-check"></i> <span>RG ou CNH (frente e verso)</span></li>
+                        <li><i class="fas fa-check"></i> <span>CPF ou documento com CPF</span></li>
+                        <li><i class="fas fa-check"></i> <span>E-mail pessoal válido</span></li>
+                        <li><i class="fas fa-check"></i> <span>Telefone para contato</span></li>
+                        <li><i class="fas fa-check"></i> <span>Comprovante de residência</span></li>
                     </ul>
                 </div>
                 <div class="document-type">
-                    <h4>Pessoa Jurídica (e-CNPJ)</h4>
+                    <h4><i class="fas fa-building"></i> Pessoa Jurídica (e-CNPJ)</h4>
                     <ul>
-                        <li><i class="fas fa-check"></i> CNPJ da empresa</li>
-                        <li><i class="fas fa-check"></i> Foto ou digital do CNH/RG do responsável</li>
-                        <li><i class="fas fa-check"></i> E-mail corporativo</li>
-                        <li><i class="fas fa-check"></i> Telefone para contato</li>
+                        <li><i class="fas fa-check"></i> <span>CNPJ da empresa ativo</span></li>
+                        <li><i class="fas fa-check"></i> <span>RG/CNH do responsável legal</span></li>
+                        <li><i class="fas fa-check"></i> <span>Contrato social atualizado</span></li>
+                        <li><i class="fas fa-check"></i> <span>E-mail corporativo</span></li>
+                        <li><i class="fas fa-check"></i> <span>Procuração (se aplicável)</span></li>
                     </ul>
                 </div>
             </div>
+            
+            <div class="security-badge">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Segurança Garantida</h4>
+                <p>Seus dados são protegidos com criptografia de ponta e certificação digital padrão ICP-Brasil</p>
+            </div>
         </div>
-
     </section>
 
     <div class="calory-whatsapp-float">
@@ -866,8 +1236,227 @@
             }
         });
 
-        // Alternar entre formulários PF/PJ
+        // Toast Notifications
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => document.body.removeChild(toast), 300);
+            }, 3000);
+        }
+
+        // Máscaras de Input
+        function formatCPF(value) {
+            return value.replace(/\D/g, '')
+                       .replace(/(\d{3})(\d)/, '$1.$2')
+                       .replace(/(\d{3})(\d)/, '$1.$2')
+                       .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+                       .replace(/(-\d{2})\d+?$/, '$1');
+        }
+
+        function formatCNPJ(value) {
+            return value.replace(/\D/g, '')
+                       .replace(/(\d{2})(\d)/, '$1.$2')
+                       .replace(/(\d{3})(\d)/, '$1.$2')
+                       .replace(/(\d{3})(\d)/, '$1/$2')
+                       .replace(/(\d{4})(\d)/, '$1-$2')
+                       .replace(/(-\d{2})\d+?$/, '$1');
+        }
+
+        function formatPhone(value) {
+            const cleaned = value.replace(/\D/g, '');
+            if (cleaned.length <= 10) {
+                return cleaned.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+            } else {
+                return cleaned.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+            }
+        }
+
+        // Validações
+        function validateCPF(cpf) {
+            cpf = cpf.replace(/\D/g, '');
+            if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
+            
+            let sum = 0;
+            for (let i = 0; i < 9; i++) {
+                sum += parseInt(cpf.charAt(i)) * (10 - i);
+            }
+            let remainder = 11 - (sum % 11);
+            if (remainder === 10 || remainder === 11) remainder = 0;
+            if (remainder !== parseInt(cpf.charAt(9))) return false;
+            
+            sum = 0;
+            for (let i = 0; i < 10; i++) {
+                sum += parseInt(cpf.charAt(i)) * (11 - i);
+            }
+            remainder = 11 - (sum % 11);
+            if (remainder === 10 || remainder === 11) remainder = 0;
+            return remainder === parseInt(cpf.charAt(10));
+        }
+
+        function validateCNPJ(cnpj) {
+            cnpj = cnpj.replace(/\D/g, '');
+            if (cnpj.length !== 14 || /^(\d)\1{13}$/.test(cnpj)) return false;
+            
+            let length = cnpj.length - 2;
+            let numbers = cnpj.substring(0, length);
+            let digits = cnpj.substring(length);
+            let sum = 0;
+            let pos = length - 7;
+            
+            for (let i = length; i >= 1; i--) {
+                sum += numbers.charAt(length - i) * pos--;
+                if (pos < 2) pos = 9;
+            }
+            
+            let result = sum % 11 < 2 ? 0 : 11 - sum % 11;
+            if (result !== parseInt(digits.charAt(0))) return false;
+            
+            length++;
+            numbers = cnpj.substring(0, length);
+            sum = 0;
+            pos = length - 7;
+            
+            for (let i = length; i >= 1; i--) {
+                sum += numbers.charAt(length - i) * pos--;
+                if (pos < 2) pos = 9;
+            }
+            
+            result = sum % 11 < 2 ? 0 : 11 - sum % 11;
+            return result === parseInt(digits.charAt(1));
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validatePhone(phone) {
+            const cleaned = phone.replace(/\D/g, '');
+            return cleaned.length >= 10 && cleaned.length <= 11;
+        }
+
+        function validateName(name) {
+            return name.trim().length >= 2 && /^[a-zA-ZÀ-ÿ\s]+$/.test(name.trim());
+        }
+
+        // Função para mostrar/esconder ícones de validação
+        function updateFieldValidation(fieldId, isValid, errorMessage = '') {
+            const field = document.getElementById(fieldId);
+            const icon = field.parentElement.querySelector('.input-icon');
+            const errorDiv = document.getElementById(fieldId + '-error');
+            
+            field.classList.remove('valid', 'invalid');
+            icon.classList.remove('show', 'valid', 'invalid');
+            errorDiv.classList.remove('show');
+            
+            if (field.value.trim()) {
+                icon.classList.add('show');
+                if (isValid) {
+                    field.classList.add('valid');
+                    icon.classList.add('valid');
+                    icon.innerHTML = '<i class="fas fa-check"></i>';
+                } else {
+                    field.classList.add('invalid');
+                    icon.classList.add('invalid');
+                    icon.innerHTML = '<i class="fas fa-times"></i>';
+                    if (errorMessage) {
+                        errorDiv.textContent = errorMessage;
+                        errorDiv.classList.add('show');
+                    }
+                }
+            }
+        }
+
+        // Função para atualizar progresso
+        function updateProgress() {
+            const activeForm = document.querySelector('.cert-form.active');
+            const inputs = activeForm.querySelectorAll('input[required]');
+            let filledInputs = 0;
+            
+            inputs.forEach(input => {
+                if (input.value.trim() && input.classList.contains('valid')) {
+                    filledInputs++;
+                }
+            });
+            
+            const progress = (filledInputs / inputs.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            if (progress === 0) {
+                document.getElementById('progressText').textContent = 'Preencha seus dados básicos';
+            } else if (progress < 50) {
+                document.getElementById('progressText').textContent = 'Continue preenchendo...';
+            } else if (progress < 100) {
+                document.getElementById('progressText').textContent = 'Quase lá! Complete os dados';
+            } else {
+                document.getElementById('progressText').textContent = 'Dados completos! Pronto para enviar';
+            }
+        }
+
+        // Event Listeners para Validação em Tempo Real
         document.addEventListener('DOMContentLoaded', function() {
+            // CPF
+            const cpfInput = document.getElementById('cpf');
+            cpfInput.addEventListener('input', function(e) {
+                e.target.value = formatCPF(e.target.value);
+                const isValid = validateCPF(e.target.value);
+                updateFieldValidation('cpf', isValid, isValid ? '' : 'CPF inválido');
+                updateProgress();
+            });
+
+            // CNPJ
+            const cnpjInput = document.getElementById('cnpj');
+            cnpjInput.addEventListener('input', function(e) {
+                e.target.value = formatCNPJ(e.target.value);
+                const isValid = validateCNPJ(e.target.value);
+                updateFieldValidation('cnpj', isValid, isValid ? '' : 'CNPJ inválido');
+                updateProgress();
+            });
+
+            // Telefones
+            ['telefone-pf', 'telefone-pj'].forEach(id => {
+                const phoneInput = document.getElementById(id);
+                if (phoneInput) {
+                    phoneInput.addEventListener('input', function(e) {
+                        e.target.value = formatPhone(e.target.value);
+                        const isValid = validatePhone(e.target.value);
+                        updateFieldValidation(id, isValid, isValid ? '' : 'Telefone inválido');
+                        updateProgress();
+                    });
+                }
+            });
+
+            // Emails
+            ['email-pf', 'email-pj'].forEach(id => {
+                const emailInput = document.getElementById(id);
+                if (emailInput) {
+                    emailInput.addEventListener('input', function(e) {
+                        const isValid = validateEmail(e.target.value);
+                        updateFieldValidation(id, isValid, isValid ? '' : 'E-mail inválido');
+                        updateProgress();
+                    });
+                }
+            });
+
+            // Nomes
+            ['nome-pf', 'nome-pj'].forEach(id => {
+                const nameInput = document.getElementById(id);
+                if (nameInput) {
+                    nameInput.addEventListener('input', function(e) {
+                        const isValid = validateName(e.target.value);
+                        updateFieldValidation(id, isValid, isValid ? '' : 'Nome deve ter pelo menos 2 caracteres');
+                        updateProgress();
+                    });
+                }
+            });
+
+            // Alternar entre formulários PF/PJ
             const certTypes = document.querySelectorAll('.cert-type');
             
             certTypes.forEach(type => {
@@ -881,11 +1470,13 @@
                     
                     const formId = this.getAttribute('data-type') + '-form';
                     document.getElementById(formId).classList.add('active');
+                    updateProgress();
                 });
             });
 
             // Configuração do envio do formulário PF
             document.getElementById('solicitar-pf').addEventListener('click', function() {
+                const button = this;
                 const formData = {
                     type: 'PF',
                     cpf: document.getElementById('cpf').value,
@@ -895,12 +1486,17 @@
                 };
                 
                 if (validateForm(formData)) {
-                    sendToWhatsApp(formData);
+                    showLoadingButton(button);
+                    setTimeout(() => {
+                        sendToWhatsApp(formData);
+                        hideLoadingButton(button);
+                    }, 1500);
                 }
             });
 
             // Configuração do envio do formulário PJ
             document.getElementById('solicitar-pj').addEventListener('click', function() {
+                const button = this;
                 const formData = {
                     type: 'PJ',
                     cnpj: document.getElementById('cnpj').value,
@@ -910,22 +1506,58 @@
                 };
                 
                 if (validateForm(formData)) {
-                    sendToWhatsApp(formData);
+                    showLoadingButton(button);
+                    setTimeout(() => {
+                        sendToWhatsApp(formData);
+                        hideLoadingButton(button);
+                    }, 1500);
                 }
             });
             
+            function showLoadingButton(button) {
+                button.classList.add('loading');
+                button.disabled = true;
+            }
+
+            function hideLoadingButton(button) {
+                button.classList.remove('loading');
+                button.disabled = false;
+            }
+
             function validateForm(data) {
-                // Validação básica
-                for (const key in data) {
-                    if (!data[key]) {
-                        alert(`Por favor, preencha todos os campos`);
-                        return false;
+                let isValid = true;
+                let errors = [];
+                
+                // Validações específicas
+                if (data.type === 'PF') {
+                    if (!validateCPF(data.cpf)) {
+                        errors.push('CPF inválido');
+                        isValid = false;
+                    }
+                } else {
+                    if (!validateCNPJ(data.cnpj)) {
+                        errors.push('CNPJ inválido');
+                        isValid = false;
                     }
                 }
                 
-                // Validação simples de telefone
-                if (data.telefone.replace(/\D/g, '').length < 10) {
-                    alert('Telefone inválido');
+                if (!validateName(data.nome)) {
+                    errors.push('Nome inválido');
+                    isValid = false;
+                }
+                
+                if (!validateEmail(data.email)) {
+                    errors.push('E-mail inválido');
+                    isValid = false;
+                }
+                
+                if (!validatePhone(data.telefone)) {
+                    errors.push('Telefone inválido');
+                    isValid = false;
+                }
+                
+                if (!isValid) {
+                    showToast('Por favor, corrija os erros no formulário: ' + errors.join(', '), 'error');
                     return false;
                 }
                 
@@ -933,35 +1565,36 @@
             }
             
             function sendToWhatsApp(data) {
-                const telefoneWhatsApp = '5544999939313'; // Seu número de WhatsApp
+                const telefoneWhatsApp = '5544999939313';
                 
-                // Monta a mensagem no formato solicitado
-                let message = `Olá, queria emitir um certificado digital A1, os meus dados iniciais são:\n\n`;
+                showToast('Redirecionando para o WhatsApp...', 'info');
+                
+                let message = `Olá! Vim pelo site e gostaria de emitir um certificado digital A1. Meus dados são:\n\n`;
                 
                 if (data.type === 'PF') {
-                    message += `*Tipo:* Pessoa Física (e-CPF)\n`;
-                    message += `*CPF:* ${data.cpf}\n`;
+                    message += `🏷️ *Tipo:* Pessoa Física (e-CPF)\n`;
+                    message += `📄 *CPF:* ${data.cpf}\n`;
                 } else {
-                    message += `*Tipo:* Pessoa Jurídica (e-CNPJ)\n`;
-                    message += `*CNPJ:* ${data.cnpj}\n`;
+                    message += `🏷️ *Tipo:* Pessoa Jurídica (e-CNPJ)\n`;
+                    message += `🏢 *CNPJ:* ${data.cnpj}\n`;
                 }
                 
-                message += `*Nome completo:* ${data.nome}\n`;
-                message += `*E-mail:* ${data.email}\n`;
-                message += `*Telefone:* ${data.telefone}\n\n`;
-                message += `Por favor, me informe os próximos passos!`;
+                message += `👤 *Nome:* ${data.nome}\n`;
+                message += `📧 *E-mail:* ${data.email}\n`;
+                message += `📱 *WhatsApp:* ${data.telefone}\n\n`;
+                message += `Por favor, me informe os próximos passos para emissão do certificado! 🚀`;
 
-                // Codifica a mensagem para URL
                 const encodedMessage = encodeURIComponent(message);
                 
-                // Verifica se é mobile ou desktop para usar o link apropriado
                 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
                 const whatsappLink = isMobile 
                     ? `https://api.whatsapp.com/send?phone=${telefoneWhatsApp}&text=${encodedMessage}`
                     : `https://web.whatsapp.com/send?phone=${telefoneWhatsApp}&text=${encodedMessage}`;
                 
-                // Abre o WhatsApp em uma nova aba
-                window.open(whatsappLink, '_blank');
+                setTimeout(() => {
+                    window.open(whatsappLink, '_blank');
+                    showToast('Formulário enviado com sucesso!', 'success');
+                }, 500);
             }
         });
     </script>

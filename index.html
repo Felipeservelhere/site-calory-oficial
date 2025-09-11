@@ -479,44 +479,45 @@
       left: 100%;
     }
 
-    /* Formulário de Orçamento - Modificado para iniciar minimizado */
     .calory-form-section {
-      background: #f8f9fa;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
       padding: 20px 5%;
       text-align: center;
       transition: all 0.3s ease;
       max-height: 100px;
       overflow: hidden;
+      border-top: 3px solid #007bff;
+      border-bottom: 3px solid #007bff;
     }
 
     .calory-form-section.expanded {
-      max-height: 1000px;
+      max-height: 2000px;
       padding: 60px 5%;
     }
 
     .calory-form-toggle {
-      background: linear-gradient(135deg, #007bff, #00bfff);
+      background: linear-gradient(135deg, #28a745, #20c997);
       color: white;
       border: none;
-      padding: 10px 80px;
-      font-size: 1.5rem;
+      padding: 15px 40px;
+      font-size: 1.3rem;
       border-radius: 50px;
       font-weight: 600;
       cursor: pointer;
       margin: 10px auto;
       display: block;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+      box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
     }
 
     .calory-form-toggle:hover {
-      background: linear-gradient(135deg, #0069d9, #0095ff);
+      background: linear-gradient(135deg, #218838, #199673);
       transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+      box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
     }
 
     .calory-form-toggle i {
-      margin-left: 8px;
+      margin: 0 8px;
       transition: transform 0.3s ease;
     }
 
@@ -525,12 +526,12 @@
     }
 
     .form-container {
-      max-width: 600px;
+      max-width: 800px;
       margin: 20px auto 0;
       background: white;
       padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       opacity: 0;
       transition: opacity 0.5s ease;
     }
@@ -540,9 +541,9 @@
     }
 
     .calory-form-section h2 {
-      color: #007bff;
+      color: #28a745;
       margin-bottom: 15px;
-      font-size: 2rem;
+      font-size: 2.2rem;
       opacity: 0;
       transition: opacity 0.3s ease;
     }
@@ -563,35 +564,176 @@
       opacity: 1;
     }
 
+    /* Selos de Confiança */
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 25px 0;
+      flex-wrap: wrap;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .calory-form-section.expanded .trust-badges {
+      opacity: 1;
+    }
+
+    .trust-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 120px;
+    }
+
+    .trust-badge i {
+      font-size: 2rem;
+      color: #28a745;
+      margin-bottom: 10px;
+    }
+
+    .trust-badge span {
+      font-size: 0.85rem;
+      color: #495057;
+      font-weight: 600;
+    }
+
+    /* Depoimento */
+    .testimonial-container {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 25px;
+      margin: 30px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      border-left: 4px solid #007bff;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .calory-form-section.expanded .testimonial-container {
+      opacity: 1;
+    }
+
+    .testimonial-text {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 15px;
+  position: relative;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.testimonial-text:before {
+  content: "“"; /* aspas de abertura correta */
+  font-size: 3rem;
+  color: #007bff;
+  opacity: 0.2;
+  position: absolute;
+  top: -15px;
+  left: -10px;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+    .testimonial-author img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .author-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .author-name {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .author-role {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    /* Nota de Segurança */
+    .security-note {
+      background: #e8f5e9;
+      border-left: 4px solid #28a745;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .calory-form-section.expanded .security-note {
+      opacity: 1;
+    }
+
+    .security-note i {
+      color: #28a745;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    /* Campos do Formulário */
     .form-group {
       margin-bottom: 20px;
       text-align: left;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
+
+    .calory-form-section.expanded .form-group {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .form-group:nth-child(1) { transition-delay: 0.1s; }
+    .form-group:nth-child(2) { transition-delay: 0.15s; }
+    .form-group:nth-child(3) { transition-delay: 0.2s; }
+    .form-group:nth-child(4) { transition-delay: 0.25s; }
+    .form-group:nth-child(5) { transition-delay: 0.3s; }
 
     .form-group input,
     .form-group select {
       width: 100%;
       padding: 15px;
       border: 1px solid #ddd;
-      border-radius: 5px;
+      border-radius: 8px;
       font-size: 1rem;
       transition: all 0.3s ease;
+      background: #f8f9fa;
     }
 
     .form-group input:focus,
     .form-group select:focus {
-      border-color: #007bff;
-      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+      border-color: #28a745;
+      box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+      background: white;
+      outline: none;
     }
 
     .calory-form-button {
-      background: linear-gradient(135deg, #007bff, #00bfff);
+      background: linear-gradient(135deg, #28a745, #20c997);
       color: white;
       border: none;
-      padding: 15px 30px;
+      padding: 18px 30px;
       border-radius: 50px;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       cursor: pointer;
       width: 100%;
       transition: all 0.3s ease;
@@ -599,12 +741,112 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
+      margin-top: 10px;
+      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .calory-form-section.expanded .calory-form-button {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .calory-form-button:hover {
-      background: linear-gradient(135deg, #0069d9, #0095ff);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+      background: linear-gradient(135deg, #218838, #199673);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+    }
+
+    .terms-note {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #666;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .calory-form-section.expanded .terms-note {
+      opacity: 1;
+    }
+
+    .terms-note a {
+      color: #007bff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .terms-note a:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+
+    /* Responsividade */
+    @media (max-width: 767px) {
+      .calory-form-toggle {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+      }
+      
+      .form-container {
+        padding: 25px 20px;
+        margin: 15px auto 0;
+      }
+      
+      .calory-form-section h2 {
+        font-size: 1.8rem;
+      }
+      
+      .trust-badges {
+        gap: 15px;
+      }
+      
+      .trust-badge {
+        max-width: 100px;
+      }
+      
+      .trust-badge i {
+        font-size: 1.7rem;
+      }
+      
+      .trust-badge span {
+        font-size: 0.8rem;
+      }
+      
+      .testimonial-text {
+        font-size: 1rem;
+      }
+      
+      .calory-form-button {
+        padding: 15px 20px;
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .calory-form-toggle {
+        padding: 10px 20px;
+        font-size: 1rem;
+        width: 90%;
+      }
+      
+      .trust-badges {
+        gap: 10px;
+      }
+      
+      .trust-badge {
+        max-width: 80px;
+      }
+      
+      .trust-badge i {
+        font-size: 1.5rem;
+      }
+      
+      .trust-badge span {
+        font-size: 0.75rem;
+      }
     }
 
     /* Seção de Segmentos */
@@ -953,6 +1195,48 @@
     margin: 0 10px; /* Ajuste este valor conforme necessário */
 }
 
+/* Indicador de arraste */
+    .calory-drag-indicator {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 10;
+      animation: pulse 2s infinite;
+      pointer-events: none;
+    }
+
+    .calory-drag-indicator i {
+      animation: swipe 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.7; }
+      50% { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+
+    @keyframes swipe {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(10px); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Esconde o indicador em desktop */
+    @media (min-width: 768px) {
+      .calory-drag-indicator {
+        display: none;
+      }
+    }
+
     /* Responsividade */
     @media (max-width: 1199.98px) {
       .calory-banner-content h1 {
@@ -1091,6 +1375,15 @@
     padding: 12px 16px !important; /* Reduzir o padding */
     white-space: nowrap; /* Impedir quebra de linha */
   }
+
+  .calory-segmentos-track {
+      cursor: grab;
+      user-select: none;
+    }
+    
+    .calory-segmentos-track:active {
+      cursor: grabbing;
+    }
 
       body {
         padding-top: 70px;
@@ -1382,7 +1675,7 @@
         <div class="calory-banner-overlay"></div>
         <div class="calory-banner-content">
           <a href="#form-orcamento" class="calory-cta-button1" style="background-color: #007bff;"
-            onclick="expandFormSection()">
+   onclick="expandFormSection(); handleMobileMenuOnFormClick();">
             <i class="fas fa-clock"></i> TESTE GRÁTIS POR 30 DIAS
           </a>
         </div>
@@ -1447,16 +1740,44 @@
   <!-- Formulário de Orçamento - Modificado para iniciar minimizado -->
   <section id="form-orcamento" class="calory-form-section">
     <button class="calory-form-toggle" onclick="toggleFormSection()">
-      Solicitar Teste Grátis <i class="fas fa-chevron-down"></i>
+      <i class="fas fa-shield-alt"></i> TESTE GRATUITO SEM COMPROMISSO <i class="fas fa-chevron-down"></i>
     </button>
 
     <div class="form-container">
-      <h2>Receba 30 dias para testar o nosso sistema</h2>
-      <p>Preencha os dados abaixo e nosso consultor entrará em contato em até 15 minutos</p>
+      <h2>Experimente nosso sistema por 30 dias sem custo</h2>
+      <p>Sem compromisso, sem cartão de crédito e com suporte completo durante o período de teste</p>
+
+      <!-- Selos de confiança -->
+      <div class="trust-badges">
+        <div class="trust-badge">
+          <i class="fas fa-lock"></i>
+          <span>Dados Protegidos</span>
+        </div>
+        <div class="trust-badge">
+          <i class="fas fa-user-shield"></i>
+          <span>Privacidade</span>
+        </div>
+        <div class="trust-badge">
+          <i class="fas fa-headset"></i>
+          <span>Suporte</span>
+        </div>
+        <div class="trust-badge">
+          <i class="fas fa-rocket"></i>
+          <span>Instalação Rápida</span>
+        </div>
+      </div>
+
+
+      <!-- Nota de segurança -->
+      <div class="security-note">
+        <i class="fas fa-info-circle"></i>
+        <span>Seus dados estão seguros conosco. Não compartilhamos suas informações com terceiros.</span>
+      </div>
 
       <form id="orcamentoForm" action="https://formsubmit.co/comercialcalory@gmail.com" method="POST">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_next" value="https://calory.com.br/obrigado">
+        <input type="hidden" name="_subject" value="Novo Teste Grátis - Site Calory">
 
         <div class="form-group">
           <input type="text" name="nome" placeholder="Seu nome completo" required>
@@ -1493,8 +1814,12 @@
         </div>
 
         <button type="submit" class="calory-form-button">
-          <i class="fas fa-paper-plane"></i> ENVIAR SOLICITAÇÃO
+          <i class="fas fa-play-circle"></i> INICIAR TESTE GRATUITO
         </button>
+        
+        <p style="text-align: center; margin-top: 15px; font-size: 0.85rem; color: #666;">
+          Ao solicitar o teste gratuito você tem até 30 dias para testar o sistema para depois disso começar a pagar a mensalidade.
+        </p>
       </form>
     </div>
   </section>
@@ -1503,12 +1828,16 @@
   <section class="calory-segmentos-section">
     <h2>Soluções para diversos ramos de atividade</h2>
     <div class="calory-segmentos-container">
+      <div class="calory-drag-indicator">
+        <i class="fas fa-arrow-left"></i>
+        Arraste para ver mais
+        <i class="fas fa-arrow-right"></i>
+      </div>
       <div class="calory-segmentos-arrows">
         <button onclick="prevSegmento()">❮</button>
         <button onclick="nextSegmento()">❯</button>
       </div>
       <div class="calory-segmentos-carousel">
-
         <div class="calory-segmentos-track" id="segmentosTrack">
           <!-- Segmento 1 -->
           <a href="/mercados" class="calory-segmento-card">
@@ -1775,22 +2104,151 @@
       return 3;
     }
 
-    // Formulário
-    function toggleFormSection() {
-      const formSection = document.querySelector('.calory-form-section');
-      formSection.classList.toggle('expanded');
-      if (formSection.classList.contains('expanded')) {
-        formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Configuração do arraste para segmentos com prevenção de scroll vertical
+    function setupSegmentosDrag() {
+  if (!segmentosTrack || window.innerWidth >= 768) return;
+  
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+  
+  // Evento de toque inicial
+  segmentosTrack.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    startX = e.touches[0].clientX;
+    segmentosTrack.style.transition = 'none';
+  }, { passive: true });
+  
+  // Evento durante o arraste
+  segmentosTrack.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    
+    currentX = e.touches[0].clientX;
+    const diffX = startX - currentX;
+    
+    // move só visualmente (em pixels), mas não altera o índice ainda
+    segmentosTrack.style.transform = `translateX(-${currentSegmentoIndex * cardWidth + diffX}px)`;
+    
+    // Previne scroll vertical durante arraste horizontal
+    if (Math.abs(diffX) > 10) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+  
+  // Evento ao soltar o toque
+  segmentosTrack.addEventListener('touchend', () => {
+    isDragging = false;
+    segmentosTrack.style.transition = 'transform 0.3s ease';
+    
+    const movedBy = startX - currentX;
+    
+    // Decide se avança ou volta UM card
+    if (Math.abs(movedBy) > 50) {
+      if (movedBy > 0 && currentSegmentoIndex < totalSegmentos - getVisibleCards()) {
+        currentSegmentoIndex += 1; // Avança 1 card
+      } else if (movedBy < 0 && currentSegmentoIndex > 0) {
+        currentSegmentoIndex -= 1; // Retrocede 1 card
       }
+    }
+    
+    // Sempre ajusta para o índice final (1 em 1)
+    updateCarousel();
+    
+    // Esconde o indicador após o primeiro uso
+    const dragIndicator = document.querySelector('.calory-drag-indicator');
+    if (dragIndicator) {
+      dragIndicator.style.opacity = '0';
+      setTimeout(() => {
+        dragIndicator.style.display = 'none';
+      }, 300);
+    }
+  }, { passive: true });
+}
+
+    function toggleFormSection() {
+    const formSection = document.querySelector('.calory-form-section');
+    formSection.classList.toggle('expanded');
+    
+    if (formSection.classList.contains('expanded')) {
+      // Pega a posição do elemento na página
+      const y = formSection.getBoundingClientRect().top + window.scrollY;
+
+      // Define um offset de 200px abaixo do topo
+      const offset = -200;
+
+      // Faz a rolagem absoluta até a posição calculada
+      window.scrollTo({
+        top: y - offset,
+        behavior: 'smooth'
+      });
+
+      // Rastreamento de conversão (opcional)
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_expand', {
+          'event_category': 'engagement',
+          'event_label': 'test_gratuit_form'
+        });
+      }
+    }
+  }
+
+  function expandFormSection() {
+  const formSection = document.querySelector('.calory-form-section');
+  
+  // Garante que a seção do formulário esteja expandida
+  if (!formSection.classList.contains('expanded')) {
+    formSection.classList.add('expanded');
+  }
+  
+  // Aguarda um breve momento para garantir que a expansão foi processada
+  setTimeout(() => {
+    // Calcula a posição do formulário na página
+    const formPosition = formSection.getBoundingClientRect().top + window.pageYOffset;
+    
+    // Calcula o offset considerando o header fixo
+    const headerHeight = document.querySelector('.calory-header').offsetHeight;
+    const offset = headerHeight + -300; // 20px de margem adicional
+    
+    // Faz a rolagem suave até o formulário
+    window.scrollTo({
+      top: formPosition - offset,
+      behavior: 'smooth'
+    });
+  }, 100); // Pequeno delay para garantir que a expansão foi processada
+}
+
+// Adicione também esta função para melhorar a experiência em mobile:
+function handleMobileMenuOnFormClick() {
+  if (window.innerWidth <= 899.98) {
+    // Fecha o menu mobile se estiver aberto
+    const menu = document.querySelector('.calory-nav-links');
+    const toggle = document.querySelector('.calory-menu-toggle');
+    if (menu.classList.contains('active')) {
+      menu.classList.remove('active');
+      toggle.classList.remove('active');
+    }
+  }
+}
+
+  function expandOrcamentoForm() {
+    const formSection = document.querySelector('.calory-form-section');
+
+    if (!formSection.classList.contains('expanded')) {
+      formSection.classList.add('expanded');
     }
 
-    function expandFormSection() {
-      const formSection = document.querySelector('.calory-form-section');
-      if (!formSection.classList.contains('expanded')) {
-        formSection.classList.add('expanded');
-        formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }
+    // Calcula posição absoluta do form
+    const y = formSection.getBoundingClientRect().top + window.scrollY;
+
+    // Define um offset (quanto abaixo do topo ele vai ficar)
+    const offset = 150; // ajuste esse valor conforme quiser
+
+    // Faz a rolagem suave até o form
+    window.scrollTo({
+      top: y - offset,
+      behavior: 'smooth'
+    });
+  }
 
     function isSessionStorageAvailable() {
       try {
@@ -1848,46 +2306,14 @@
 
       bannerInterval = setInterval(nextBannerSlide, 25000);
       updateCarousel();
+      
+      // Configurar arraste para segmentos
+      setupSegmentosDrag();
+      
       window.addEventListener('resize', function() {
         updateCarousel();
+        setupSegmentosDrag(); // Reconfigura o arraste se necessário
       });
-
-      // Drag nos segmentos (apenas em dispositivos móveis)
-      if (window.innerWidth < 768 && segmentosTrack) {
-        let segmentoStartX = 0;
-        let segmentoIsDragging = false;
-
-        segmentosTrack.addEventListener('touchstart', e => {
-          segmentoStartX = e.touches[0].clientX;
-          segmentoIsDragging = true;
-          segmentosTrack.classList.add('active'); // Adiciona a classe 'active' ao iniciar o arrasto
-        }, { passive: true });
-
-        segmentosTrack.addEventListener('touchmove', function (e) {
-          if (segmentoIsDragging && !segmentoIsAnimating && e.cancelable) {
-            const currentX = e.touches[0].clientX;
-            const diff = segmentoStartX - currentX;
-
-            // Ajuste a sensibilidade do arrasto
-            const sensitivity = 2; // Ajuste este valor conforme necessário
-
-            if (Math.abs(diff) > sensitivity) {
-              e.preventDefault();
-
-              // Ajuste a velocidade do movimento
-              const speed = 0.5; // Ajuste este valor conforme necessário
-              const translateX = -diff * speed;
-              // Aplica a transformação diretamente
-              segmentosTrack.style.transform = `translateX(calc(${segmentosTrack.style.transform} + ${translateX}px))`;
-            }
-          }
-        }, { passive: false });
-
-        segmentosTrack.addEventListener('touchend', () => {
-          segmentoIsDragging = false;
-          segmentosTrack.classList.remove('active'); // Remove a classe 'active' ao finalizar o arrasto
-        }, { passive: true });
-      }
 
       // Setas do carrossel de banner
       document.querySelectorAll('.calory-carousel-arrow').forEach(arrow => {
@@ -1910,10 +2336,6 @@
             nextBannerSlide(e);
           }
         }, { passive: false });
-
-        arrow.addEventListener('touchend', function (e) {
-          e.stopPropagation();
-        }, { passive: true });
       });
 
       // Setas do carrossel de segmentos
@@ -1950,9 +2372,12 @@
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-          });
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }
         });
       });
 
@@ -1967,26 +2392,32 @@
       });
 
       // Validação do formulário
-      document.getElementById('orcamentoForm').addEventListener('submit', function (e) {
-        const tel = document.querySelector('input[name="telefone"]').value;
-        if (!/^[0-9]{10,11}$/.test(tel)) {
-          e.preventDefault();
-          alert('Por favor, insira um WhatsApp válido com DDD');
-          return false;
-        }
+      const orcamentoForm = document.getElementById('orcamentoForm');
+      if (orcamentoForm) {
+        orcamentoForm.addEventListener('submit', function (e) {
+          const tel = document.querySelector('input[name="telefone"]').value;
+          if (!/^[0-9]{10,11}$/.test(tel)) {
+            e.preventDefault();
+            alert('Por favor, insira um WhatsApp válido com DDD');
+            return false;
+          }
 
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'form_submit', {
-            'event_category': 'lead',
-            'event_label': 'orcamento_form'
-          });
-        }
-      });
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'form_submit', {
+              'event_category': 'lead',
+              'event_label': 'orcamento_form'
+            });
+          }
+        });
+      }
 
       // Máscara para telefone
-      document.querySelector('input[name="telefone"]').addEventListener('input', function () {
-        this.value = this.value.replace(/\D/g, '').substring(0, 11);
-      });
+      const telefoneInput = document.querySelector('input[name="telefone"]');
+      if (telefoneInput) {
+        telefoneInput.addEventListener('input', function () {
+          this.value = this.value.replace(/\D/g, '').substring(0, 11);
+        });
+      }
 
       // Drag no banner
       if (bannerTrack) {
