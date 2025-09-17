@@ -486,8 +486,6 @@
       transition: all 0.3s ease;
       max-height: 100px;
       overflow: hidden;
-      border-top: 3px solid #007bff;
-      border-bottom: 3px solid #007bff;
     }
 
     .calory-form-section.expanded {
@@ -499,7 +497,7 @@
       background: linear-gradient(135deg, #28a745, #20c997);
       color: white;
       border: none;
-      padding: 15px 40px;
+      padding: 21px 40px;
       font-size: 1.3rem;
       border-radius: 50px;
       font-weight: 600;
@@ -2105,56 +2103,50 @@
     }
 
     // Configuração do arraste para segmentos com prevenção de scroll vertical
-    function setupSegmentosDrag() {
-  if (!segmentosTrack || window.innerWidth >= 768) return;
-  
+    let segmentosDragConfigured = false;
+
+function setupSegmentosDrag() {
+  if (!segmentosTrack || window.innerWidth >= 768 || segmentosDragConfigured) return;
+
+  segmentosDragConfigured = true;
+
   let startX = 0;
   let currentX = 0;
   let isDragging = false;
-  
-  // Evento de toque inicial
+
   segmentosTrack.addEventListener('touchstart', (e) => {
     isDragging = true;
     startX = e.touches[0].clientX;
     segmentosTrack.style.transition = 'none';
   }, { passive: true });
-  
-  // Evento durante o arraste
+
   segmentosTrack.addEventListener('touchmove', (e) => {
     if (!isDragging) return;
-    
     currentX = e.touches[0].clientX;
     const diffX = startX - currentX;
-    
-    // move só visualmente (em pixels), mas não altera o índice ainda
+
+    // Move visualmente
     segmentosTrack.style.transform = `translateX(-${currentSegmentoIndex * cardWidth + diffX}px)`;
-    
-    // Previne scroll vertical durante arraste horizontal
-    if (Math.abs(diffX) > 10) {
-      e.preventDefault();
-    }
+
+    if (Math.abs(diffX) > 10) e.preventDefault();
   }, { passive: false });
-  
-  // Evento ao soltar o toque
+
   segmentosTrack.addEventListener('touchend', () => {
     isDragging = false;
     segmentosTrack.style.transition = 'transform 0.3s ease';
-    
+
     const movedBy = startX - currentX;
-    
-    // Decide se avança ou volta UM card
+
     if (Math.abs(movedBy) > 50) {
       if (movedBy > 0 && currentSegmentoIndex < totalSegmentos - getVisibleCards()) {
-        currentSegmentoIndex += 1; // Avança 1 card
+        currentSegmentoIndex += 1;
       } else if (movedBy < 0 && currentSegmentoIndex > 0) {
-        currentSegmentoIndex -= 1; // Retrocede 1 card
+        currentSegmentoIndex -= 1;
       }
     }
-    
-    // Sempre ajusta para o índice final (1 em 1)
+
     updateCarousel();
-    
-    // Esconde o indicador após o primeiro uso
+
     const dragIndicator = document.querySelector('.calory-drag-indicator');
     if (dragIndicator) {
       dragIndicator.style.opacity = '0';
@@ -2164,6 +2156,12 @@
     }
   }, { passive: true });
 }
+
+// No resize, apenas atualiza a posição
+window.addEventListener('resize', function() {
+  updateCarousel();
+});
+
 
     function toggleFormSection() {
     const formSection = document.querySelector('.calory-form-section');
