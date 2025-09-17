@@ -321,7 +321,7 @@
 .cert-type {
     flex: 1;
     padding: 20px 18px;
-    border: 4px solid #007bff;
+    border: 6px solid #007bff;
     background: #f8f9fa;
     color: #007bff;
     font-weight: 700;
@@ -332,22 +332,6 @@
     box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
     will-change: transform, box-shadow;
     overflow: visible; /* permite o ::after brilhar fora do botão */
-}
-
-/* --- keyframes para pulsar (scale + sombra) --- */
-@keyframes pulseButton {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 2px 8px rgba(0,123,255,0.15);
-  }
-  50% {
-    transform: scale(1.2);
-    box-shadow: 0 10px 30px rgba(0,123,255,0.28);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 2px 8px rgba(0,123,255,0.15);
-  }
 }
 
 /* --- glow em pseudo-elemento (mais suave e evita “layout jump”) --- */
@@ -381,12 +365,6 @@
   animation: pulseIcon 2s infinite;
 }
 
-@keyframes pulse-glow {
-  0%   { opacity: 0.7; transform: scale(0.98); }
-  60%  { opacity: 0;   transform: scale(1.28);  }
-  100% { opacity: 0.7; transform: scale(0.98); }
-}
-
 /* --- hover quando não ativo --- */
 .cert-type:hover:not(.active) {
     background: rgba(0, 123, 255, 0.15);
@@ -410,7 +388,7 @@
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: none;
+            display: none; /* MODIFICADO: esconder inicialmente */
             margin-top: 25px;
         }
 
@@ -1097,11 +1075,11 @@
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <div class="progress-text" id="progressText">Preencha seus dados básicos</div>
+                <div class="progress-text" id="progressText">Selecione o tipo de pessoa para começar</div> <!-- MODIFICADO -->
             </div>
             
             <div class="cert-options">
-                <button class="cert-type active" data-type="pf">
+                <button class="cert-type" data-type="pf"> <!-- MODIFICADO: removido active -->
                     <i class="fas fa-user"></i> Pessoa Física
                 </button>
                 <button class="cert-type" data-type="pj">
@@ -1109,7 +1087,7 @@
                 </button>
             </div>
 
-            <div class="cert-form active" id="pf-form">
+            <div class="cert-form" id="pf-form"> <!-- MODIFICADO: removido active -->
                 <div class="input-group">
                     <input type="text" placeholder="CPF" required id="cpf" maxlength="14">
                     <div class="input-icon"><i class="fas fa-check"></i></div>
@@ -1138,7 +1116,7 @@
                 </button>
             </div>
 
-            <div class="cert-form" id="pj-form">
+            <div class="cert-form" id="pj-form"> <!-- MODIFICADO: removido active -->
                 <div class="input-group">
                     <input type="text" placeholder="CNPJ" required id="cnpj" maxlength="18">
                     <div class="input-icon"><i class="fas fa-check"></i></div>
@@ -1440,6 +1418,11 @@
         // Função para atualizar progresso
         function updateProgress() {
             const activeForm = document.querySelector('.cert-form.active');
+            if (!activeForm) {
+                document.getElementById('progressFill').style.width = '0%';
+                document.getElementById('progressText').textContent = 'Selecione o tipo de pessoa para começar';
+                return;
+            }
             const inputs = activeForm.querySelectorAll('input[required]');
             let filledInputs = 0;
             
@@ -1528,7 +1511,7 @@
                     certTypes.forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
                     
-                    document.querySelectorAll('.cert-form').forEach(form => {
+                                        document.querySelectorAll('.cert-form').forEach(form => {
                         form.classList.remove('active');
                     });
                     
@@ -1629,42 +1612,42 @@
             }
             
             function sendToWhatsApp(data) {
-    const telefoneWhatsApp = '5544999939313';
+                const telefoneWhatsApp = '5544999939313';
 
-    showToast('Redirecionando para o WhatsApp...', 'info');
+                showToast('Redirecionando para o WhatsApp...', 'info');
 
-    let message = `Olá! Vim pelo site e gostaria de emitir um certificado digital A1. Meus dados são:\n\n`;
+                let message = `Olá! Vim pelo site e gostaria de emitir um certificado digital A1. Meus dados são:\n\n`;
 
-    if (data.type === 'PF') {
-        message += `🏷️ *Tipo:* Pessoa Física (e-CPF)\n`;
-        message += `📄 *CPF:* ${data.cpf}\n`;
-    } else {
-        message += `🏷️ *Tipo:* Pessoa Jurídica (e-CNPJ)\n`;
-        message += `🏢 *CNPJ:* ${data.cnpj}\n`;
-    }
+                if (data.type === 'PF') {
+                    message += `🏷️ *Tipo:* Pessoa Física (e-CPF)\n`;
+                    message += `📄 *CPF:* ${data.cpf}\n`;
+                } else {
+                    message += `🏷️ *Tipo:* Pessoa Jurídica (e-CNPJ)\n`;
+                    message += `🏢 *CNPJ:* ${data.cnpj}\n`;
+                }
 
-    message += `👤 *Nome:* ${data.nome}\n`;
-    message += `📧 *E-mail:* ${data.email}\n`;
-    message += `📱 *WhatsApp:* ${data.telefone}\n\n`;
-    message += `Por favor, me informe os próximos passos para emissão do certificado! 🚀`;
+                message += `👤 *Nome:* ${data.nome}\n`;
+                message += `📧 *E-mail:* ${data.email}\n`;
+                message += `📱 *WhatsApp:* ${data.telefone}\n\n`;
+                message += `Por favor, me informe os próximos passos para emissão do certificado! 🚀`;
 
-    const encodedMessage = encodeURIComponent(message);
+                const encodedMessage = encodeURIComponent(message);
 
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const whatsappLink = isMobile 
-        ? `https://api.whatsapp.com/send?phone=${telefoneWhatsApp}&text=${encodedMessage}`
-        : `https://web.whatsapp.com/send?phone=${telefoneWhatsApp}&text=${encodedMessage}`;
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                const whatsappLink = isMobile 
+                    ? `https://api.whatsapp.com/send?phone=${telefoneWhatsApp}&text=${encodedMessage}`
+                    : `https://web.whatsapp.com/send?phone=${telefoneWhatsApp}&text=${encodedMessage}`;
 
-    if (isMobile) {
-        // Redireciona na mesma aba no mobile para evitar bloqueio de pop-up
-        location.href = whatsappLink;
-    } else {
-        // Abre em nova aba no desktop
-        window.open(whatsappLink, '_blank');
-    }
+                if (isMobile) {
+                    // Redireciona na mesma aba no mobile para evitar bloqueio de pop-up
+                    location.href = whatsappLink;
+                } else {
+                    // Abre em nova aba no desktop
+                    window.open(whatsappLink, '_blank');
+                }
 
-    showToast('Formulário enviado com sucesso!', 'success');
-}
+                showToast('Formulário enviado com sucesso!', 'success');
+            }
         });
     </script>
 </body>
