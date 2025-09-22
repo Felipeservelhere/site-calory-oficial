@@ -1,6 +1,6 @@
 <?php
-$client_id     = '02d44294238e67e49277910a851a55a9395c838c6b8b530f163fad5d1200';
-$client_secret = '625ba407964f8db27c96283b104c991972abe5fb';
+$client_id     = '625ba407964f8db27c96283b104c991972abe5fb';
+$client_secret = '02d44294238e67e49277910a851a55a9395c838c6b8b530f163fad5d1200';
 $redirect_uri  = 'https://calory.com.br/callback/bling.php';
 $host = '177.107.115.204';
 $db   = 'integracao_bling';
