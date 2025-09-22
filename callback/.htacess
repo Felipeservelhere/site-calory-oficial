@@ -1,0 +1,66 @@
+# Arquivo: .htaccess (PHP)
+
+# --- Ativa rewrite ---
+RewriteEngine On
+RewriteBase /
+
+# --- Forçar HTTPS e www (modifique conforme preferir) ---
+# Forçar HTTPS:
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# (Opcional) Forçar com ou sem www:
+# Forçar www:
+#RewriteCond %{HTTP_HOST} !^www\. [NC]
+#RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Ou forçar sem www (descomente):
+#RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+#RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+# --- Remover extensão .php (URL bonita) ---
+# Se arquivo físico existir com .php, serve ele quando chamar sem extensão
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# --- Bloquear acesso a arquivos sensíveis ---
+<FilesMatch "(\.env|config\.php|composer\.json|composer\.lock|\.git)">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# --- Impedir listagem de diretórios ---
+Options -Indexes
+
+# --- Padrão de index ---
+DirectoryIndex index.php index.html
+
+# --- Cache para arquivos estáticos ---
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 1 hour"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresDefault "access plus 1 month"
+</IfModule>
+
+# --- Headers de segurança ---
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "no-referrer-when-downgrade"
+  # Ajuste CSP conforme seu app (livre para comentar/descomentar)
+  # Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval';"
+</IfModule>
+
+# --- Página 404 amigável (opcional) ---
+ErrorDocument 404 /404.php
+
+# --- Regras para evitar hotlink (opcional) ---
+# RewriteCond %{HTTP_REFERER} !^$
+# RewriteCond %{HTTP_REFERER} !^https?://(www\.)?seusite\.com\.br/ [NC]
+# RewriteRule \.(jpg|jpeg|png|gif)$ - [F,NC,L]
