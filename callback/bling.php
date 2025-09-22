@@ -8,6 +8,7 @@ $user = 'root';
 $pass = '@@rOOt@cAlOry@1967@@';
 $port = 33060;
 
+
 try {
     $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db;charset=utf8", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -24,34 +25,30 @@ try {
 } catch (PDOException $e) {
     die("Erro na conexão com o banco: " . $e->getMessage());
 }
-
 if (!isset($_GET['code']) || !isset($_GET['state'])) {
     die('Parâmetros ausentes. Acesse via fluxo OAuth do Bling.');
 }
 
 $code  = $_GET['code'];
 $state = $_GET['state'];
-
-// URL do endpoint de token
 $url = 'https://www.bling.com.br/Api/v3/oauth/token';
+$basic_auth = base64_encode("$client_id:$client_secret");
 
 $data = [
-    'grant_type'    => 'authorization_code', // Tipo de grant
-    'code'          => $code,  // Código de autorização obtido após o consentimento
-    'redirect_uri'  => $redirect_uri,
-    'client_id'     => $client_id,
-    'client_secret' => $client_secret
+    'grant_type'    => 'authorization_code',
+    'code'          => $code
 ];
 
-// Iniciar o cURL para fazer a requisição de token
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/x-www-form-urlencoded',
-    'Accept: application/json',  // Alterar para JSON, conforme a documentação
+    'Accept: 1.0',
+    'Authorization: Basic ' . $basic_auth
 ]);
+
 
 $response = curl_exec($ch);
 if (curl_errno($ch)) {
@@ -59,18 +56,15 @@ if (curl_errno($ch)) {
 }
 curl_close($ch);
 
-// Processar a resposta
 $result = json_decode($response, true);
-
 if (isset($result['access_token'])) {
-    // Sucesso! Token obtido com sucesso
     $access_token  = $result['access_token'];
     $refresh_token = $result['refresh_token'] ?? null;
     $expires_in    = $result['expires_in'] ?? null;
     $token_type    = $result['token_type'] ?? null;
     $scope         = $result['scope'] ?? null;
 
-    // Inserir o token no banco de dados
+    // Insere no banco
     $stmt = $pdo->prepare("INSERT INTO bling_tokens 
         (access_token, refresh_token, expires_in, token_type, scope) 
         VALUES (:access_token, :refresh_token, :expires_in, :token_type, :scope)");
