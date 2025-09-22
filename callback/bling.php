@@ -8,6 +8,7 @@ $user = 'root';
 $pass = '@@rOOt@cAlOry@1967@@';
 $port = 33060;
 
+
 try {
     $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db;charset=utf8", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -31,6 +32,7 @@ if (!isset($_GET['code']) || !isset($_GET['state'])) {
 $code  = $_GET['code'];
 $state = $_GET['state'];
 $url = 'https://www.bling.com.br/Api/v3/oauth/token';
+$basic_auth = base64_encode("$client_id:$client_secret");
 
 $data = [
     'grant_type'    => 'authorization_code',
@@ -44,6 +46,12 @@ $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Content-Type: application/x-www-form-urlencoded',
+    'Accept: 1.0',
+    'Authorization: Basic ' . $basic_auth
+]);
+
 
 $response = curl_exec($ch);
 if (curl_errno($ch)) {
