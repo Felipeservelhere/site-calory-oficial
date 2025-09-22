@@ -46,7 +46,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/x-www-form-urlencoded',
     'Accept: 1.0',
-    'Authorization: Basic ' . $basic_auth
+    'Authorization: Basic' . $basic_auth
 ]);
 
 
