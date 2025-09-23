@@ -5,26 +5,43 @@ $user = 'root';
 $pass = '@@rOOt@cAlOry@1967@@';
 $port = 33060;
 
+// Caminho do arquivo de log
+$logFile = __DIR__ . '/logs/bling.log';
+
+// Função para registrar logs
+function writeLog($message) {
+    global $logFile;
+    $time = date('Y-m-d H:i:s');
+    file_put_contents($logFile, "[$time] $message\n", FILE_APPEND);
+}
+
+// ======================= CONEXÃO =======================
 try {
     $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db;charset=utf8", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    writeLog("Conexão com o banco realizada com sucesso.");
 } catch (PDOException $e) {
-    die("Erro na conexão com o banco: " . $e->getMessage());
+    writeLog("Erro na conexão com o banco: " . $e->getMessage());
+    die("Erro na conexão com o banco. Verifique o log.");
 }
 
+// ======================= PARÂMETROS =======================
 if (!isset($_GET['code']) || !isset($_GET['state'])) {
+    writeLog('Parâmetros ausentes: code ou state não fornecido.');
     die('Parâmetros ausentes. Acesse via fluxo OAuth do Bling.');
 }
 
 $code  = $_GET['code'];
 $state = $_GET['state'];
+writeLog("Parâmetros recebidos: code=$code, state=$state");
 
-// 1️⃣ Buscar credenciais e CNPJ pelo state
+// ======================= BUSCAR CREDENCIAIS =======================
 $stmt = $pdo->prepare("SELECT client_id, client_secret, cnpj FROM credenciais WHERE state = :state");
 $stmt->execute([':state' => $state]);
 $cred = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$cred) {
+    writeLog("State inválido ou não encontrado no banco: $state");
     die("State inválido ou não encontrado no banco.");
 }
 
@@ -33,7 +50,9 @@ $client_secret = $cred['client_secret'];
 $cnpj          = $cred['cnpj'];
 $redirect_uri  = 'https://calory.com.br/callback/bling.php';
 
-// 2️⃣ Solicitar token ao Bling
+writeLog("Credenciais encontradas para CNPJ: $cnpj");
+
+// ======================= REQUISIÇÃO TOKEN =======================
 $url = 'https://www.bling.com.br/Api/v3/oauth/token';
 $basic_auth = base64_encode("$client_id:$client_secret");
 
@@ -54,9 +73,13 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 
 $response = curl_exec($ch);
 if (curl_errno($ch)) {
-    die('Erro cURL: ' . curl_error($ch));
+    $err = curl_error($ch);
+    writeLog("Erro cURL: $err");
+    die('Erro cURL. Verifique o log.');
 }
 curl_close($ch);
+
+writeLog("Resposta da API Bling: $response");
 
 $result = json_decode($response, true);
 
@@ -67,7 +90,7 @@ if (isset($result['access_token'])) {
     $token_type    = $result['token_type'] ?? null;
     $scope         = $result['scope'] ?? null;
 
-    // 3️⃣ Atualizar token existente na tabela bling_tokens usando o CNPJ
+    // ======================= ATUALIZAR TOKEN =======================
     $stmt = $pdo->prepare("UPDATE bling_tokens SET 
         access_token = :access_token,
         refresh_token = :refresh_token,
@@ -86,11 +109,13 @@ if (isset($result['access_token'])) {
         ':cnpj'          => $cnpj
     ]);
 
+    writeLog("Token atualizado com sucesso para o CNPJ: $cnpj");
     echo "<h3>Token atualizado com sucesso para o CNPJ: $cnpj</h3>";
     echo "<script>window.close();</script>";
     echo "<p>Se esta janela não fechar sozinha, <button onclick='window.close()'>clique aqui para fechar</button>.</p>";
 
 } else {
+    writeLog("Erro ao obter token: " . json_encode($result));
     echo "<h3>Erro ao obter token:</h3>";
     echo "<pre>";
     print_r($result);
