@@ -5,43 +5,26 @@ $user = 'root';
 $pass = '@@rOOt@cAlOry@1967@@';
 $port = 33060;
 
-// Caminho do arquivo de log
-$logFile = __DIR__ . '/logs/bling.log';
-
-// Função para registrar logs
-function writeLog($message) {
-    global $logFile;
-    $time = date('Y-m-d H:i:s');
-    file_put_contents($logFile, "[$time] $message\n", FILE_APPEND);
-}
-
-// ======================= CONEXÃO =======================
 try {
     $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db;charset=utf8", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    writeLog("Conexão com o banco realizada com sucesso.");
 } catch (PDOException $e) {
-    writeLog("Erro na conexão com o banco: " . $e->getMessage());
-    die("Erro na conexão com o banco. Verifique o log.");
+    die("Erro na conexão com o banco: " . $e->getMessage());
 }
 
-// ======================= PARÂMETROS =======================
 if (!isset($_GET['code']) || !isset($_GET['state'])) {
-    writeLog('Parâmetros ausentes: code ou state não fornecido.');
     die('Parâmetros ausentes. Acesse via fluxo OAuth do Bling.');
 }
 
 $code  = $_GET['code'];
 $state = $_GET['state'];
-writeLog("Parâmetros recebidos: code=$code, state=$state");
 
-// ======================= BUSCAR CREDENCIAIS =======================
+// 1️⃣ Buscar credenciais e CNPJ pelo state
 $stmt = $pdo->prepare("SELECT client_id, client_secret, cnpj FROM credenciais WHERE state = :state");
 $stmt->execute([':state' => $state]);
 $cred = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$cred) {
-    writeLog("State inválido ou não encontrado no banco: $state");
     die("State inválido ou não encontrado no banco.");
 }
 
@@ -50,9 +33,7 @@ $client_secret = $cred['client_secret'];
 $cnpj          = $cred['cnpj'];
 $redirect_uri  = 'https://calory.com.br/callback/bling.php';
 
-writeLog("Credenciais encontradas para CNPJ: $cnpj");
-
-// ======================= REQUISIÇÃO TOKEN =======================
+// 2️⃣ Solicitar token ao Bling
 $url = 'https://www.bling.com.br/Api/v3/oauth/token';
 $basic_auth = base64_encode("$client_id:$client_secret");
 
@@ -73,13 +54,9 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 
 $response = curl_exec($ch);
 if (curl_errno($ch)) {
-    $err = curl_error($ch);
-    writeLog("Erro cURL: $err");
-    die('Erro cURL. Verifique o log.');
+    die('Erro cURL: ' . curl_error($ch));
 }
 curl_close($ch);
-
-writeLog("Resposta da API Bling: $response");
 
 $result = json_decode($response, true);
 
@@ -90,14 +67,13 @@ if (isset($result['access_token'])) {
     $token_type    = $result['token_type'] ?? null;
     $scope         = $result['scope'] ?? null;
 
-    // ======================= ATUALIZAR TOKEN =======================
+    // 3️⃣ Atualizar token existente na tabela bling_tokens usando o CNPJ
     $stmt = $pdo->prepare("UPDATE bling_tokens SET 
         access_token = :access_token,
         refresh_token = :refresh_token,
         expires_in = :expires_in,
         token_type = :token_type,
-        scope = :scope,
-        updated_at = NOW()
+        scope = :scope
         WHERE cnpj = :cnpj");
 
     $stmt->execute([
@@ -109,13 +85,210 @@ if (isset($result['access_token'])) {
         ':cnpj'          => $cnpj
     ]);
 
-    writeLog("Token atualizado com sucesso para o CNPJ: $cnpj");
-    echo "<h3>Token atualizado com sucesso para o CNPJ: $cnpj</h3>";
-    echo "<script>window.close();</script>";
-    echo "<p>Se esta janela não fechar sozinha, <button onclick='window.close()'>clique aqui para fechar</button>.</p>";
+    // Mensagem de sucesso bonita
+    echo <<<HTML
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integração Concluída - Calory</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .success-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .success-icon {
+            font-size: 80px;
+            color: #10b981;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #1f2937;
+            margin-bottom: 15px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        
+        .cnpj-info {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-weight: bold;
+            color: #374151;
+        }
+        
+        .close-button {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        .close-button:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+        
+        .auto-close {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #9ca3af;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            margin: 0 auto 20px;
+            box-shadow: inset 0px 0px 0px #10b981;
+            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        }
+        
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: #10b981;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+        
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+        
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        @keyframes scale {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+        
+        @keyframes fill {
+            100% {
+                box-shadow: inset 0px 0px 0px 40px #10b981;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+        
+        <h1>✅ Integração Concluída!</h1>
+        
+        <p>Sua integração com o Bling foi configurada com sucesso. Agora você pode sincronizar seus dados automaticamente.</p>
+        
+        <div class="cnpj-info">
+            CNPJ: {$cnpj}
+        </div>
+        
+        <button class="close-button" onclick="fecharJanela()">Fechar Janela</button>
+        
+        <div class="auto-close">
+            Esta janela será fechada automaticamente em <span id="countdown">5</span> segundos...
+        </div>
+    </div>
+
+    <script>
+        function fecharJanela() {
+            window.open('', '_self');
+            window.close();
+        }
+        
+        // Contador regressivo para fechar automaticamente
+        let countdown = 5;
+        const countdownElement = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            if (countdown <= 0) {
+                clearInterval(timer);
+                fecharJanela();
+            }
+        }, 1000);
+        
+        // Tentativa de fechar automaticamente após 5 segundos
+        setTimeout(fecharJanela, 5000);
+    </script>
+</body>
+</html>
+HTML;
 
 } else {
-    writeLog("Erro ao obter token: " . json_encode($result));
     echo "<h3>Erro ao obter token:</h3>";
     echo "<pre>";
     print_r($result);
