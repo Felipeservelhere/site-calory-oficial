@@ -113,7 +113,7 @@ if (isset($result['access_token'])) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Integração Concluída - Calory</title>
+<title>Autorização Concluída - Calory</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
@@ -129,7 +129,7 @@ p { color: #6b7280; line-height: 1.6; margin-bottom: 25px; font-size: 16px; }
 </head>
 <body>
 <div class="success-container">
-<h1>✅ Atualização Concluída!</h1>
+<h1>✅ Autorização Concluída!</h1>
 <div class="cnpj-info">CNPJ: {$cnpj}</div>
 </div>
 <script>
