@@ -86,12 +86,10 @@ if ($_POST && isset($_POST['primeiro_acesso'])) {
                         $mail->isSMTP();
                         $mail->Host       = 'smtp.gmail.com';
                         $mail->SMTPAuth   = true;
-                        $mail->Username   = 'felipeservelhere.calory@gmail.com';
-                        $mail->Password   = 'llal vitv sami oqfr';
-                        $mail->Host       = 'smtp.gmail.com';
+                        $mail->Username   = 'seuemail@gmail.com';
+                        $mail->Password   = 'sua_senha_de_app';
                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                         $mail->Port       = 587;
-
 
                         $mail->setFrom('seuemail@gmail.com', 'Calory Sistemas');
                         $mail->addAddress($email, 'Administrador');
@@ -100,9 +98,6 @@ if ($_POST && isset($_POST['primeiro_acesso'])) {
                         $mail->Subject = 'Senha de Primeiro Acesso - Calory Sistemas';
                         $mail->Body    = "Olá,\n\nBem-vindo ao sistema Calory Sistemas!\n\nEmpresa: {$empresa['nome_empresa']}\nCNPJ: {$cnpj}\n\nSua senha temporária de administrador é: {$senha_aleatoria}\n\nApós login, defina seu usuário e nova senha.\n\nE-mail: {$email}\n\nAtenciosamente,\nEquipe Calory Sistemas";
 
-                        $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Mostra todo o processo de conexão SMTP
-                        $mail->Debugoutput = 'html';
-                        
                         $mail->send();
                         $msg = "Conta criada com sucesso! Verifique seu e-mail para senha temporária.";
                         $msg_type = "success";
