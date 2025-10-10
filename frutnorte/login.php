@@ -86,12 +86,12 @@ if ($_POST && isset($_POST['primeiro_acesso'])) {
                         $mail->isSMTP();
                         $mail->Host       = 'smtp.gmail.com';
                         $mail->SMTPAuth   = true;
-                        $mail->Username   = 'seuemail@gmail.com';
-                        $mail->Password   = 'sua_senha_de_app';
+                        $mail->Username   = 'felipeservelhere.calory@gmail.com';
+                        $mail->Password   = 'llal vitv sami oqfr';
                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                         $mail->Port       = 587;
 
-                        $mail->setFrom('seuemail@gmail.com', 'Calory Sistemas');
+                        $mail->setFrom('felipeservelhere.calory@gmail.com', 'Calory Sistemas');
                         $mail->addAddress($email, 'Administrador');
 
                         $mail->isHTML(false);
