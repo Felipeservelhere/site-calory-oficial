@@ -87,7 +87,7 @@ if ($_POST && isset($_POST['primeiro_acesso'])) {
                         $mail->Host       = 'smtp.gmail.com';
                         $mail->SMTPAuth   = true;
                         $mail->Username   = 'felipeservelhere.calory@gmail.com';
-                        $mail->Password   = 'llal vitv sami oqfr';
+                        $mail->Password   = 'napu fiey zepk mmtp';
                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                         $mail->Port       = 587;
 
