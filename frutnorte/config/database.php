@@ -2,6 +2,7 @@
 // Configuração do banco de dados
 class Database {
     private $host = '177.107.115.204';
+    private $port = '33060'; // 👈 ADICIONADO AQUI
     private $db_name = 'frutnorte';
     private $username = 'FRUTNORTE';
     private $password = '@CALORY123@';
@@ -12,7 +13,7 @@ class Database {
         
         try {
             $this->conn = new PDO(
-                "mysql:host=" . $this->host . ";dbname=" . $this->db_name . ";charset=utf8",
+                "mysql:host=" . $this->host . ";port=" . $this->port . ";dbname=" . $this->db_name . ";charset=utf8",
                 $this->username,
                 $this->password,
                 array(

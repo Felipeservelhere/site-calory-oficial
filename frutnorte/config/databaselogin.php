@@ -2,6 +2,7 @@
 // Conexão exclusiva para Login / Sessões / Controle de Acesso
 class DatabaseLogin {
     private $host = '177.107.115.204';
+    private $port = '33060'; // 👈 Porta adicionada
     private $db_name = 'empresaweb';
     private $username = 'EMPRESAWEB';
     private $password = '@CALORY123@';
@@ -12,7 +13,7 @@ class DatabaseLogin {
 
         try {
             $this->connlogin = new PDO(
-                "mysql:host=" . $this->host . ";dbname=" . $this->db_name . ";charset=utf8",
+                "mysql:host=" . $this->host . ";port=" . $this->port . ";dbname=" . $this->db_name . ";charset=utf8",
                 $this->username,
                 $this->password,
                 array(
