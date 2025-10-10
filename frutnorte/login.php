@@ -2,15 +2,6 @@
 session_start();
 require_once 'config/databaselogin.php';
 
-// PHPMailer
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
-
 $databaseLogin = new DatabaseLogin();
 $pdo = $databaseLogin->getConnection();
 $msg = '';
@@ -80,29 +71,17 @@ if ($_POST && isset($_POST['primeiro_acesso'])) {
                 $stmt = $pdo->prepare("INSERT INTO usuarios (empresa_id, nome, email, senha, cargo, status, data_cadastro, usuario) VALUES (?, 'Administrador', ?, ?, 'Admin', 1, NOW(), NULL)");
 
                 if ($stmt->execute([$empresa_id, $email, $senha_hash])) {
-                    $mail = new PHPMailer(true);
+                    // --------------------- ENVIO DE EMAIL SIMPLIFICADO ---------------------
+                    $to = $email;
+                    $subject = 'Senha de Primeiro Acesso - Calory Sistemas';
+                    $message = "Olá,\n\nBem-vindo ao sistema Calory Sistemas!\n\nEmpresa: {$empresa['nome_empresa']}\nCNPJ: {$cnpj}\n\nSua senha temporária de administrador é: {$senha_aleatoria}\n\nApós login, defina seu usuário e nova senha.\n\nE-mail: {$email}\n\nAtenciosamente,\nEquipe Calory Sistemas";
+                    $headers = "From: Calory Sistemas <no-reply@seudominio.com>\r\n";
 
-                    try {
-                        $mail->isSMTP();
-                        $mail->Host       = 'smtp.gmail.com';
-                        $mail->SMTPAuth   = true;
-                        $mail->Username   = 'felipeservelhere.calory@gmail.com';
-                        $mail->Password   = 'napu fiey zepk mmtp';
-                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                        $mail->Port       = 587;
-
-                        $mail->setFrom('felipeservelhere.calory@gmail.com', 'Calory Sistemas');
-                        $mail->addAddress($email, 'Administrador');
-
-                        $mail->isHTML(false);
-                        $mail->Subject = 'Senha de Primeiro Acesso - Calory Sistemas';
-                        $mail->Body    = "Olá,\n\nBem-vindo ao sistema Calory Sistemas!\n\nEmpresa: {$empresa['nome_empresa']}\nCNPJ: {$cnpj}\n\nSua senha temporária de administrador é: {$senha_aleatoria}\n\nApós login, defina seu usuário e nova senha.\n\nE-mail: {$email}\n\nAtenciosamente,\nEquipe Calory Sistemas";
-
-                        $mail->send();
+                    if(mail($to, $subject, $message, $headers)){
                         $msg = "Conta criada com sucesso! Verifique seu e-mail para senha temporária.";
                         $msg_type = "success";
-                    } catch (Exception $e) {
-                        $msg = "Erro ao enviar e-mail: {$mail->ErrorInfo}. Conta criada, mas senha não enviada.";
+                    } else {
+                        $msg = "Conta criada, mas não foi possível enviar o e-mail.";
                         $msg_type = "warning";
                     }
                 } else {
@@ -123,89 +102,89 @@ if ($_POST && isset($_POST['primeiro_acesso'])) {
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <style>
-    body {
-        background: linear-gradient(135deg, #e0eafc, #cfdef3);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .login-card {
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        overflow: hidden;
-        transition: all 0.3s;
-    }
-    .login-card:hover { transform: translateY(-3px); }
-    .login-header { background: #6B46C1; color: white; text-align: center; padding: 20px; font-size: 1.25rem; }
-    .login-header i { margin-right: 10px; }
-    .btn-login { background: #6B46C1; color: white; border-radius: 8px; font-weight: 600; }
-    .btn-login:hover { background: #5b21b6; }
-    .btn-collapse { border-radius: 8px; font-weight: 500; }
+body {
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-card {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    overflow: hidden;
+    transition: all 0.3s;
+}
+.login-card:hover { transform: translateY(-3px); }
+.login-header { background: #6B46C1; color: white; text-align: center; padding: 20px; font-size: 1.25rem; }
+.login-header i { margin-right: 10px; }
+.btn-login { background: #6B46C1; color: white; border-radius: 8px; font-weight: 600; }
+.btn-login:hover { background: #5b21b6; }
+.btn-collapse { border-radius: 8px; font-weight: 500; }
 </style>
 </head>
 <body>
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5">
-            <div class="card login-card">
-                <div class="login-header"><i class="fas fa-lock"></i>Login Calory Sistemas</div>
-                <div class="card-body p-4">
+<div class="row justify-content-center">
+<div class="col-md-6 col-lg-5">
+<div class="card login-card">
+<div class="login-header"><i class="fas fa-lock"></i>Login Calory Sistemas</div>
+<div class="card-body p-4">
 
-                    <?php if ($msg): ?>
-                        <div class="alert alert-<?= $msg_type ?> alert-dismissible fade show">
-                            <?= htmlspecialchars($msg) ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        </div>
-                    <?php endif; ?>
+<?php if ($msg): ?>
+<div class="alert alert-<?= $msg_type ?> alert-dismissible fade show">
+<?= htmlspecialchars($msg) ?>
+<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+<?php endif; ?>
 
-                    <!-- Login Form -->
-                    <form method="POST">
-                        <input type="hidden" name="login" value="1">
-                        <div class="mb-3">
-                            <label for="email_login" class="form-label">E-mail ou Usuário</label>
-                            <input type="text" class="form-control" id="email_login" name="email_login" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="senha" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="senha" name="senha" required>
-                        </div>
-                        <button type="submit" class="btn btn-login w-100 mb-3"><i class="fas fa-sign-in-alt"></i> Entrar</button>
-                    </form>
+<!-- Login Form -->
+<form method="POST">
+<input type="hidden" name="login" value="1">
+<div class="mb-3">
+<label for="email_login" class="form-label">E-mail ou Usuário</label>
+<input type="text" class="form-control" id="email_login" name="email_login" required>
+</div>
+<div class="mb-3">
+<label for="senha" class="form-label">Senha</label>
+<input type="password" class="form-control" id="senha" name="senha" required>
+</div>
+<button type="submit" class="btn btn-login w-100 mb-3"><i class="fas fa-sign-in-alt"></i> Entrar</button>
+</form>
 
-                    <!-- Primeiro Acesso -->
-                    <button class="btn btn-outline-secondary w-100 mb-3 btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#primeiroAcessoForm">
-                        <i class="fas fa-key"></i> Primeiro Acesso
-                    </button>
-                    <div class="collapse" id="primeiroAcessoForm">
-                        <form method="POST">
-                            <input type="hidden" name="primeiro_acesso" value="1">
-                            <div class="mb-3">
-                                <label for="cnpj" class="form-label">CNPJ *</label>
-                                <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="00.000.000/0000-00" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">E-mail *</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="exemplo@empresa.com" required>
-                            </div>
-                            <button type="submit" class="btn btn-success w-100"><i class="fas fa-envelope"></i> Solicitar Senha</button>
-                        </form>
-                    </div>
+<!-- Primeiro Acesso -->
+<button class="btn btn-outline-secondary w-100 mb-3 btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#primeiroAcessoForm">
+<i class="fas fa-key"></i> Primeiro Acesso
+</button>
+<div class="collapse" id="primeiroAcessoForm">
+<form method="POST">
+<input type="hidden" name="primeiro_acesso" value="1">
+<div class="mb-3">
+<label for="cnpj" class="form-label">CNPJ *</label>
+<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="00.000.000/0000-00" required>
+</div>
+<div class="mb-3">
+<label for="email" class="form-label">E-mail *</label>
+<input type="email" class="form-control" id="email" name="email" placeholder="exemplo@empresa.com" required>
+</div>
+<button type="submit" class="btn btn-success w-100"><i class="fas fa-envelope"></i> Solicitar Senha</button>
+</form>
+</div>
 
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 document.getElementById('cnpj').addEventListener('input', function(e){
-    let v = e.target.value.replace(/\D/g,'');
-    v = v.replace(/^(\d{2})(\d)/,'$1.$2');
-    v = v.replace(/^(\d{2})\.(\d{3})(\d)/,'$1.$2.$3');
-    v = v.replace(/\.(\d{3})(\d)/,'.$1/$2');
-    v = v.replace(/(\d{4})(\d{2})$/,'$1-$2');
-    e.target.value = v;
+let v = e.target.value.replace(/\D/g,'');
+v = v.replace(/^(\d{2})(\d)/,'$1.$2');
+v = v.replace(/^(\d{2})\.(\d{3})(\d)/,'$1.$2.$3');
+v = v.replace(/\.(\d{3})(\d)/,'.$1/$2');
+v = v.replace(/(\d{4})(\d{2})$/,'$1-$2');
+e.target.value = v;
 });
 </script>
 </body>
