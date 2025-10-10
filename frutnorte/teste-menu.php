@@ -9,11 +9,11 @@ echo "<h2>Teste do Menu</h2>";
 
 try {
     // Testa o config.php
-    if (!file_exists('config.php')) {
+    if (!file_exists('includes/config.php')) {
         throw new Exception('config.php não encontrado');
     }
     
-    require_once 'config.php';
+    require_once 'includes/config.php';
     echo "<p style='color: green;'>✅ config.php carregado</p>";
     
     // Testa o menu.php
