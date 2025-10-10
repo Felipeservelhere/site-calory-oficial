@@ -46,12 +46,10 @@ try {
     die('Erro na validação de usuário.');
 }
 
-$db_config = [
-    'host' => 'localhost',
-    'dbname' => 'frutnorte',
-    'username' => 'root',
-    'password' => '@@rOOt@cAlOry@1967@@'
-];
+require_once '../config/databaselogin.php'; // o arquivo que contém a classe Database
+
+$database = new Database();
+$pdo = $database->getConnection();
 
 function conectarBanco() {
     global $db_config;

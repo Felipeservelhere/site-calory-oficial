@@ -1,10 +1,10 @@
 <?php
 // Configuração do banco de dados
 class Database {
-    private $host = 'localhost';
+    private $host = '177.107.115.204';
     private $db_name = 'frutnorte';
-    private $username = 'root';
-    private $password = '@@rOOt@cAlOry@1967@@';
+    private $username = 'FRUTNORTE';
+    private $password = '@CALORY123@';
     private $conn;
 
     public function getConnection() {

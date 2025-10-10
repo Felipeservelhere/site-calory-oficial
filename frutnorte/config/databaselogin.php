@@ -1,10 +1,10 @@
 <?php
 // Conexão exclusiva para Login / Sessões / Controle de Acesso
 class DatabaseLogin {
-    private $host = 'localhost';
+    private $host = '177.107.115.204';
     private $db_name = 'empresaweb';
-    private $username = 'root';
-    private $password = '@@rOOt@cAlOry@1967@@';
+    private $username = 'EMPRESAWEB';
+    private $password = '@CALORY123@';
     private $connlogin;
 
     public function getConnection() {

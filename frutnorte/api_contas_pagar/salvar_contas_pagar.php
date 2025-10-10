@@ -26,13 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
-// Configuração do banco de dados
-$db_config = [
-    'host' => 'localhost',
-    'dbname' => 'frutnorte',
-    'username' => 'root',
-    'password' => '@@rOOt@cAlOry@1967@@'
-];
+require_once '../config/databaselogin.php'; // o arquivo que contém a classe Database
+
+$database = new Database();
+$pdo = $database->getConnection();
 
 /**
  * Conecta ao banco de dados
