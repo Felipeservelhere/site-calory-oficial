@@ -1,0 +1,318 @@
+<ns2:CompNfse
+	xmlns:ns2="http://shad.elotech.com.br/schemas/iss/nfse_v2_03.xsd">
+	<ns2:Nfse versao="2.03">
+		<ns2:InfNfse>
+			<ns2:Numero>4368</ns2:Numero>
+			<ns2:CodigoVerificacao>381875759</ns2:CodigoVerificacao>
+			<ns2:DataEmissao>2025-06-24</ns2:DataEmissao>
+			<ns2:ValoresNfse>
+				<ns2:BaseCalculo>10.00</ns2:BaseCalculo>
+				<ns2:Aliquota>2.95000</ns2:Aliquota>
+				<ns2:ValorIss>0.30</ns2:ValorIss>
+				<ns2:ValorLiquidoNfse>10.00</ns2:ValorLiquidoNfse>
+			</ns2:ValoresNfse>
+			<ns2:ValorCredito>0</ns2:ValorCredito>
+			<ns2:PrestadorServico>
+				<ns2:IdentificacaoPrestador>
+					<ns2:CpfCnpj>
+						<ns2:Cnpj>10254864000193</ns2:Cnpj>
+					</ns2:CpfCnpj>
+					<ns2:InscricaoMunicipal>00003004</ns2:InscricaoMunicipal>
+				</ns2:IdentificacaoPrestador>
+				<ns2:RazaoSocial>ELIAS CALORY E CIA LTDA</ns2:RazaoSocial>
+				<ns2:Endereco>
+					<ns2:Endereco>Avenida AVENIDA PRESIDENTE KENNEDY</ns2:Endereco>
+					<ns2:Numero>1485</ns2:Numero>
+					<ns2:Bairro>CENTRO</ns2:Bairro>
+					<ns2:CodigoMunicipio>4117909</ns2:CodigoMunicipio>
+					<ns2:Uf>PR</ns2:Uf>
+					<ns2:Cep>85950000</ns2:Cep>
+				</ns2:Endereco>
+				<ns2:Contato>
+					<ns2:Telefone>4436494444</ns2:Telefone>
+					<ns2:Email>elias@calory.com.br</ns2:Email>
+				</ns2:Contato>
+			</ns2:PrestadorServico>
+			<ns2:OrgaoGerador>
+				<ns2:CodigoMunicipio>4117909</ns2:CodigoMunicipio>
+				<ns2:Uf>PR</ns2:Uf>
+			</ns2:OrgaoGerador>
+			<ns2:DeclaracaoPrestacaoServico>
+				<ns2:InfDeclaracaoPrestacaoServico>
+					<ns2:Rps>
+						<ns2:IdentificacaoRps>
+							<ns2:Numero>4051</ns2:Numero>
+							<ns2:Serie>1</ns2:Serie>
+							<ns2:Tipo>1</ns2:Tipo>
+						</ns2:IdentificacaoRps>
+						<ns2:DataEmissao>2025-06-24</ns2:DataEmissao>
+						<ns2:Status>1</ns2:Status>
+					</ns2:Rps>
+					<ns2:Competencia>2025-06-24</ns2:Competencia>
+					<ns2:Servico>
+						<ns2:Valores>
+							<ns2:ValorServicos>10.00</ns2:ValorServicos>
+							<ns2:ValorDeducoes>0.00</ns2:ValorDeducoes>
+							<ns2:RetidoPis>2</ns2:RetidoPis>
+							<ns2:ValorPis>0.00</ns2:ValorPis>
+							<ns2:RetidoCofins>2</ns2:RetidoCofins>
+							<ns2:ValorCofins>0.00</ns2:ValorCofins>
+							<ns2:RetidoInss>2</ns2:RetidoInss>
+							<ns2:ValorInss>0.00</ns2:ValorInss>
+							<ns2:RetidoIr>2</ns2:RetidoIr>
+							<ns2:ValorIr>0.00</ns2:ValorIr>
+							<ns2:RetidoCsll>2</ns2:RetidoCsll>
+							<ns2:ValorCsll>0.00</ns2:ValorCsll>
+							<ns2:RetidoCpp>2</ns2:RetidoCpp>
+							<ns2:ValorCpp>0.00</ns2:ValorCpp>
+							<ns2:OutrasRetencoes>0.00</ns2:OutrasRetencoes>
+							<ns2:RetidoOutrasRetencoes>2</ns2:RetidoOutrasRetencoes>
+							<ns2:ValorIss>0.30</ns2:ValorIss>
+							<ns2:Aliquota>2.95000</ns2:Aliquota>
+							<ns2:DescontoIncondicionado>0.00</ns2:DescontoIncondicionado>
+							<ns2:DescontoCondicionado>0.00</ns2:DescontoCondicionado>
+						</ns2:Valores>
+						<ns2:IssRetido>2</ns2:IssRetido>
+						<ns2:ResponsavelRetencao>1</ns2:ResponsavelRetencao>
+						<ns2:Discriminacao>teste de para ver outra situacao
+e tambem ver tudo que quero
+mesmo quebrando de linhas</ns2:Discriminacao>
+						<ns2:CodigoMunicipio>4117909</ns2:CodigoMunicipio>
+						<ns2:ExigibilidadeISS>1</ns2:ExigibilidadeISS>
+						<ns2:MunicipioIncidencia>4117909</ns2:MunicipioIncidencia>
+						<ns2:ListaItensServico>
+							<ns2:ItemServico>
+								<ns2:ItemListaServico>104</ns2:ItemListaServico>
+								<ns2:CodigoCnae>6201501</ns2:CodigoCnae>
+								<ns2:Descricao>LOCACAO DE SOFTWARE</ns2:Descricao>
+								<ns2:Tributavel>1</ns2:Tributavel>
+								<ns2:Quantidade>1.00000</ns2:Quantidade>
+								<ns2:ValorUnitario>10.00000</ns2:ValorUnitario>
+								<ns2:ValorDesconto>0.00</ns2:ValorDesconto>
+								<ns2:ValorLiquido>10.00</ns2:ValorLiquido>
+							</ns2:ItemServico>
+						</ns2:ListaItensServico>
+					</ns2:Servico>
+					<ns2:Prestador>
+						<ns2:CpfCnpj>
+							<ns2:Cnpj>10254864000193</ns2:Cnpj>
+						</ns2:CpfCnpj>
+						<ns2:InscricaoMunicipal>00003004</ns2:InscricaoMunicipal>
+					</ns2:Prestador>
+					<ns2:Tomador>
+						<ns2:IdentificacaoTomador>
+							<ns2:CpfCnpj>
+								<ns2:Cpf>45415625968</ns2:Cpf>
+							</ns2:CpfCnpj>
+						</ns2:IdentificacaoTomador>
+						<ns2:RazaoSocial>ELIAS CALORY</ns2:RazaoSocial>
+						<ns2:Endereco>
+							<ns2:Endereco>AV PEROLA BYINGTON</ns2:Endereco>
+							<ns2:Numero>561</ns2:Numero>
+							<ns2:Bairro>CENTRO</ns2:Bairro>
+							<ns2:CodigoMunicipio>4118907</ns2:CodigoMunicipio>
+							<ns2:Uf>PR</ns2:Uf>
+							<ns2:Cep>87540000</ns2:Cep>
+						</ns2:Endereco>
+						<ns2:Contato>
+							<ns2:Telefone>36494444</ns2:Telefone>
+						</ns2:Contato>
+						<ns2:InscricaoEstadual>ISENTO</ns2:InscricaoEstadual>
+					</ns2:Tomador>
+					<ns2:RegimeEspecialTributacao>7</ns2:RegimeEspecialTributacao>
+					<ns2:IncentivoFiscal>2</ns2:IncentivoFiscal>
+				</ns2:InfDeclaracaoPrestacaoServico>
+			</ns2:DeclaracaoPrestacaoServico>
+			<ns2:ChaveAcesso>c5a0cefbd581be934e877c4c77cad46a</ns2:ChaveAcesso>
+		</ns2:InfNfse>
+	</ns2:Nfse>
+	<ns2:Xml>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;CompNfse
+		xmlns="http://shad.elotech.com.br/schemas/iss/nfse_v2_03.xsd"&gt;
+    &lt;Nfse versao="2.03"&gt;
+        &lt;InfNfse id="sec_id_1"&gt;
+            &lt;Numero&gt;4368&lt;/Numero&gt;
+            &lt;CodigoVerificacao&gt;381875759&lt;/CodigoVerificacao&gt;
+            &lt;DataEmissao&gt;2025-06-24&lt;/DataEmissao&gt;
+            &lt;ValoresNfse&gt;
+                &lt;BaseCalculo&gt;10.00&lt;/BaseCalculo&gt;
+                &lt;Aliquota&gt;2.95000&lt;/Aliquota&gt;
+                &lt;ValorIss&gt;0.30&lt;/ValorIss&gt;
+                &lt;ValorLiquidoNfse&gt;10.00&lt;/ValorLiquidoNfse&gt;
+            &lt;/ValoresNfse&gt;
+            &lt;ValorCredito&gt;0&lt;/ValorCredito&gt;
+            &lt;PrestadorServico&gt;
+                &lt;IdentificacaoPrestador&gt;
+                    &lt;CpfCnpj&gt;
+                        &lt;Cnpj&gt;10254864000193&lt;/Cnpj&gt;
+                    &lt;/CpfCnpj&gt;
+                    &lt;InscricaoMunicipal&gt;00003004&lt;/InscricaoMunicipal&gt;
+                &lt;/IdentificacaoPrestador&gt;
+                &lt;RazaoSocial&gt;ELIAS CALORY E CIA LTDA&lt;/RazaoSocial&gt;
+                &lt;Endereco&gt;
+                    &lt;Endereco&gt;Avenida AVENIDA PRESIDENTE KENNEDY&lt;/Endereco&gt;
+                    &lt;Numero&gt;1485&lt;/Numero&gt;
+                    &lt;Bairro&gt;CENTRO&lt;/Bairro&gt;
+                    &lt;CodigoMunicipio&gt;4117909&lt;/CodigoMunicipio&gt;
+                    &lt;Uf&gt;PR&lt;/Uf&gt;
+                    &lt;Cep&gt;85950000&lt;/Cep&gt;
+                &lt;/Endereco&gt;
+                &lt;Contato&gt;
+                    &lt;Telefone&gt;4436494444&lt;/Telefone&gt;
+                    &lt;Email&gt;elias@calory.com.br&lt;/Email&gt;
+                &lt;/Contato&gt;
+            &lt;/PrestadorServico&gt;
+            &lt;OrgaoGerador&gt;
+                &lt;CodigoMunicipio&gt;4117909&lt;/CodigoMunicipio&gt;
+                &lt;Uf&gt;PR&lt;/Uf&gt;
+            &lt;/OrgaoGerador&gt;
+            &lt;DeclaracaoPrestacaoServico&gt;
+                &lt;InfDeclaracaoPrestacaoServico&gt;
+                    &lt;Rps&gt;
+                        &lt;IdentificacaoRps&gt;
+                            &lt;Numero&gt;4051&lt;/Numero&gt;
+                            &lt;Serie&gt;1&lt;/Serie&gt;
+                            &lt;Tipo&gt;1&lt;/Tipo&gt;
+                        &lt;/IdentificacaoRps&gt;
+                        &lt;DataEmissao&gt;2025-06-24&lt;/DataEmissao&gt;
+                        &lt;Status&gt;1&lt;/Status&gt;
+                    &lt;/Rps&gt;
+                    &lt;Competencia&gt;2025-06-24&lt;/Competencia&gt;
+                    &lt;Servico&gt;
+                        &lt;Valores&gt;
+                            &lt;ValorServicos&gt;10.00&lt;/ValorServicos&gt;
+                            &lt;ValorDeducoes&gt;0.00&lt;/ValorDeducoes&gt;
+                            &lt;RetidoPis&gt;2&lt;/RetidoPis&gt;
+                            &lt;ValorPis&gt;0.00&lt;/ValorPis&gt;
+                            &lt;RetidoCofins&gt;2&lt;/RetidoCofins&gt;
+                            &lt;ValorCofins&gt;0.00&lt;/ValorCofins&gt;
+                            &lt;RetidoInss&gt;2&lt;/RetidoInss&gt;
+                            &lt;ValorInss&gt;0.00&lt;/ValorInss&gt;
+                            &lt;RetidoIr&gt;2&lt;/RetidoIr&gt;
+                            &lt;ValorIr&gt;0.00&lt;/ValorIr&gt;
+                            &lt;RetidoCsll&gt;2&lt;/RetidoCsll&gt;
+                            &lt;ValorCsll&gt;0.00&lt;/ValorCsll&gt;
+                            &lt;RetidoCpp&gt;2&lt;/RetidoCpp&gt;
+                            &lt;ValorCpp&gt;0.00&lt;/ValorCpp&gt;
+                            &lt;OutrasRetencoes&gt;0.00&lt;/OutrasRetencoes&gt;
+                            &lt;RetidoOutrasRetencoes&gt;2&lt;/RetidoOutrasRetencoes&gt;
+                            &lt;ValorIss&gt;0.30&lt;/ValorIss&gt;
+                            &lt;Aliquota&gt;2.95000&lt;/Aliquota&gt;
+                            &lt;DescontoIncondicionado&gt;0.00&lt;/DescontoIncondicionado&gt;
+                            &lt;DescontoCondicionado&gt;0.00&lt;/DescontoCondicionado&gt;
+                        &lt;/Valores&gt;
+                        &lt;IssRetido&gt;2&lt;/IssRetido&gt;
+                        &lt;ResponsavelRetencao&gt;1&lt;/ResponsavelRetencao&gt;
+                        &lt;Discriminacao&gt;teste de para ver outra situacao
+e tambem ver tudo que quero
+mesmo quebrando de linhas&lt;/Discriminacao&gt;
+                        &lt;CodigoMunicipio&gt;4117909&lt;/CodigoMunicipio&gt;
+                        &lt;ExigibilidadeISS&gt;1&lt;/ExigibilidadeISS&gt;
+                        &lt;MunicipioIncidencia&gt;4117909&lt;/MunicipioIncidencia&gt;
+                        &lt;ListaItensServico&gt;
+                            &lt;ItemServico&gt;
+                                &lt;ItemListaServico&gt;104&lt;/ItemListaServico&gt;
+                                &lt;CodigoCnae&gt;6201501&lt;/CodigoCnae&gt;
+                                &lt;Descricao&gt;LOCACAO DE SOFTWARE&lt;/Descricao&gt;
+                                &lt;Tributavel&gt;1&lt;/Tributavel&gt;
+                                &lt;Quantidade&gt;1.00000&lt;/Quantidade&gt;
+                                &lt;ValorUnitario&gt;10.00000&lt;/ValorUnitario&gt;
+                                &lt;ValorDesconto&gt;0.00&lt;/ValorDesconto&gt;
+                                &lt;ValorLiquido&gt;10.00&lt;/ValorLiquido&gt;
+                            &lt;/ItemServico&gt;
+                        &lt;/ListaItensServico&gt;
+                    &lt;/Servico&gt;
+                    &lt;Prestador&gt;
+                        &lt;CpfCnpj&gt;
+                            &lt;Cnpj&gt;10254864000193&lt;/Cnpj&gt;
+                        &lt;/CpfCnpj&gt;
+                        &lt;InscricaoMunicipal&gt;00003004&lt;/InscricaoMunicipal&gt;
+                    &lt;/Prestador&gt;
+                    &lt;Tomador&gt;
+                        &lt;IdentificacaoTomador&gt;
+                            &lt;CpfCnpj&gt;
+                                &lt;Cpf&gt;45415625968&lt;/Cpf&gt;
+                            &lt;/CpfCnpj&gt;
+                        &lt;/IdentificacaoTomador&gt;
+                        &lt;RazaoSocial&gt;ELIAS CALORY&lt;/RazaoSocial&gt;
+                        &lt;Endereco&gt;
+                            &lt;Endereco&gt;AV PEROLA BYINGTON&lt;/Endereco&gt;
+                            &lt;Numero&gt;561&lt;/Numero&gt;
+                            &lt;Bairro&gt;CENTRO&lt;/Bairro&gt;
+                            &lt;CodigoMunicipio&gt;4118907&lt;/CodigoMunicipio&gt;
+                            &lt;Uf&gt;PR&lt;/Uf&gt;
+                            &lt;Cep&gt;87540000&lt;/Cep&gt;
+                        &lt;/Endereco&gt;
+                        &lt;Contato&gt;
+                            &lt;Telefone&gt;36494444&lt;/Telefone&gt;
+                        &lt;/Contato&gt;
+                        &lt;InscricaoEstadual&gt;ISENTO&lt;/InscricaoEstadual&gt;
+                    &lt;/Tomador&gt;
+                    &lt;RegimeEspecialTributacao&gt;7&lt;/RegimeEspecialTributacao&gt;
+                    &lt;IncentivoFiscal&gt;2&lt;/IncentivoFiscal&gt;
+                &lt;/InfDeclaracaoPrestacaoServico&gt;
+            &lt;/DeclaracaoPrestacaoServico&gt;
+            &lt;ChaveAcesso&gt;c5a0cefbd581be934e877c4c77cad46a&lt;/ChaveAcesso&gt;
+        &lt;/InfNfse&gt;
+    &lt;Signature
+		xmlns="http://www.w3.org/2000/09/xmldsig#"&gt;
+      &lt;SignedInfo&gt;
+        &lt;CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/&gt;
+        &lt;SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/&gt;
+        &lt;Reference URI="#sec_id_1"&gt;
+          &lt;Transforms&gt;
+            &lt;Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/&gt;
+            &lt;Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/&gt;
+          &lt;/Transforms&gt;
+          &lt;DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/&gt;
+          &lt;DigestValue&gt;zMP9LaZmheHNVmV5XkbZaIKl2+g=&lt;/DigestValue&gt;
+        &lt;/Reference&gt;
+      &lt;/SignedInfo&gt;
+      &lt;SignatureValue&gt;OYaR/ceYa/GgTk47lk10a3BaQpKvGUuAd7w+MVszbdAgFlqn47UoUiKsWF87zsxnUVi1c+0RxoRr&amp;#13;
+9MIJjtJCGM1223IwzktH2ZW+/DhaxngBlWqD88GeCw4cXPUXV/dIjuYCPLkPLFTJB2s73v3PHntQ&amp;#13;
+NMBpE7nUQHvj4Bmed+FVLUNmloq6zVh1OjvPjTC4vJGWc/rlL7hEO2RXJf25boqngEAiCYrUScx5&amp;#13;
+ml/w9gdchW63j8PffILXwCPBdD8Y+vj2VNkvZG9b8F6FvjV2QPAcOMUfRLV+WrAy94TkLnERi1d7&amp;#13;
+YhbiyROH9VXQHnYiI6gea8XpqKn/CuCB1dDIJg==&lt;/SignatureValue&gt;
+      &lt;KeyInfo&gt;
+        &lt;X509Data&gt;
+          &lt;X509Certificate&gt;MIIHjTCCBXWgAwIBAgIIac/ee9NhF0kwDQYJKoZIhvcNAQELBQAwczELMAkGA1UEBhMCQlIxEzAR&amp;#13;
+BgNVBAoTCklDUC1CcmFzaWwxNjA0BgNVBAsTLVNlY3JldGFyaWEgZGEgUmVjZWl0YSBGZWRlcmFs&amp;#13;
+IGRvIEJyYXNpbCAtIFJGQjEXMBUGA1UEAxMOQUMgTElOSyBSRkIgdjIwHhcNMjQxMjIwMTQyMzAx&amp;#13;
+WhcNMjUxMjIwMTQyMzAxWjCB7zELMAkGA1UEBhMCQlIxEzARBgNVBAoTCklDUC1CcmFzaWwxCzAJ&amp;#13;
+BgNVBAgTAlBSMREwDwYDVQQHEwhQQUxPVElOQTEXMBUGA1UECxMOMzAyNTMwNzAwMDAxMTIxNjA0&amp;#13;
+BgNVBAsTLVNlY3JldGFyaWEgZGEgUmVjZWl0YSBGZWRlcmFsIGRvIEJyYXNpbCAtIFJGQjEWMBQG&amp;#13;
+A1UECxMNUkZCIGUtQ05QSiBBMTETMBEGA1UECxMKcHJlc2VuY2lhbDEtMCsGA1UEAxMkTVVOSUNJ&amp;#13;
+UElPIERFIFBBTE9USU5BOjc2MjA4NDg3MDAwMTY0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB&amp;#13;
+CgKCAQEAoft7WVVYyFP4lnsBwXrkcHQBUmHdSJslYVCfeFKg9Er9lbSfifzgvaI51RdLDgENG8mg&amp;#13;
+vHhS7FmtwROTsdHOqEKP6r6pESWty+zHxOQSBHCJL2sxNoPRz0L+q+/6GU2ONngU3XTdqcIek/yF&amp;#13;
+MkC6h/EWQcoV9nxedIz6nZStRr0uzw3sp0J6DrwMNK7/+Gdch3UZSFVmsvF30fhzG8ug9jJNbxtm&amp;#13;
+xRcjggOa6YN11QL4/i3hEw1HbH+klJRSpfQpXm/cCpcBe0QxKzACOLi5/O8FpIE9nQp0tgVWR+e8&amp;#13;
+9On1hu/knTVDjVvYQZKm86TpZfO8XDkhg/n3Z0neYVWZiQIDAQABo4ICpjCCAqIwHwYDVR0jBBgw&amp;#13;
+FoAUDd/WR/QTTuUiWDIsZqbnLuRXvAIwDgYDVR0PAQH/BAQDAgXgMGwGA1UdIARlMGMwYQYGYEwB&amp;#13;
+AgE7MFcwVQYIKwYBBQUHAgEWSWh0dHA6Ly9yZXBvc2l0b3Jpby5saW5rY2VydGlmaWNhY2FvLmNv&amp;#13;
+bS5ici9hYy1saW5rcmZiL2FjLWxpbmstcmZiLWRwYy5wZGYwgbAGA1UdHwSBqDCBpTBQoE6gTIZK&amp;#13;
+aHR0cDovL3JlcG9zaXRvcmlvLmxpbmtjZXJ0aWZpY2FjYW8uY29tLmJyL2FjLWxpbmtyZmIvbGNy&amp;#13;
+LWFjLWxpbmtyZmJ2NS5jcmwwUaBPoE2GS2h0dHA6Ly9yZXBvc2l0b3JpbzIubGlua2NlcnRpZmlj&amp;#13;
+YWNhby5jb20uYnIvYWMtbGlua3JmYi9sY3ItYWMtbGlua3JmYnY1LmNybDBiBggrBgEFBQcBAQRW&amp;#13;
+MFQwUgYIKwYBBQUHMAKGRmh0dHA6Ly9yZXBvc2l0b3Jpby5saW5rY2VydGlmaWNhY2FvLmNvbS5i&amp;#13;
+ci9hYy1saW5rcmZiL2FjLWxpbmtyZmJ2NS5wN2Iwgb8GA1UdEQSBtzCBtIEdQURNQ09NUFJBU0BQ&amp;#13;
+QUxPVElOQS5QUi5HT1YuQlKgJQYFYEwBAwKgHBMaTFVJWiBFUk5FU1RPIERFIEdJQUNPTUVUVEmg&amp;#13;
+GQYFYEwBAwOgEBMONzYyMDg0ODcwMDAxNjSgOAYFYEwBAwSgLxMtMjQwOTE5NTYzNjkyOTM5NTkw&amp;#13;
+MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwoBcGBWBMAQMHoA4TDDAwMDAwMDAwMDAwMDAdBgNV&amp;#13;
+HSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwCQYDVR0TBAIwADANBgkqhkiG9w0BAQsFAAOCAgEA&amp;#13;
+SaJ86CW3zEX/njK9me52UOyscWoz0o8hB3wAhsPbduG++T92nhK+jRLQp1Hehnzbnc+++CkXQzw+&amp;#13;
+jdc2rH67wjP8OmecUTpsYDDSxxwoxA5Tx669e1c6kz9JIC6gMv0r2A161+YOc67KgnQ/FkdOgRNi&amp;#13;
+knRIPUGSV9DiMCjUCzaXeKK1NNuRGmZtkPKWIzOThUhB2qJRVz9lOW5gIPDDd8J+3KNIhhYg9TAS&amp;#13;
+3fPUdkG7BpqwQPj4jkfbmV6p0r6LxE07/QDVZ/p6WwtsXNn9OXio26FUR6Ch6LXfIuXW8ExWvPQi&amp;#13;
+ESErDj3KdpiGRcqNpuvg8/CmPJdcJw/pCbo/50mi4YLSFNoDrlfa+LXTO+r+fbMALIF0RM95hT90&amp;#13;
+buriWS1K2xsK+NcbgqEvbfI0WaGSkxKdpiYVVyrTZWMe6s6hPygCG2NxFczU4pvjOrTIcchwzNDh&amp;#13;
+ewPdcxxGnQN61sYAdhpCREfs/j3NwXNnDX9NjHVwezvYCI3WnBGmMDfXhzFezsN6rQ1BaNUIriuG&amp;#13;
+0E3us2B7tjp1oDoTgLPwmF0u2n3wDg1q2q/R+VY9nbBYq3SIcykFnzb0ITbeH9OKBbnMiTzKC8Cu&amp;#13;
+ZjGPu8EbkI+0ZQUqO390Awu4z1NqZcix1fegYdd5M2Rp2xoc8ef0ofuzKdyjoYi+dEDQWyTMTxU=&lt;/X509Certificate&gt;
+        &lt;/X509Data&gt;
+      &lt;/KeyInfo&gt;
+    &lt;/Signature&gt;
+    &lt;/Nfse&gt;
+&lt;/CompNfse&gt;
+
+	</ns2:Xml>
+</ns2:CompNfse>
