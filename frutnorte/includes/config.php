@@ -1,41 +1,22 @@
 <?php
-// includes/config.php - Configurações globais do sistema
-// Estrutura assumida:
-// - Raiz/
-//   - includes/
-//     - config.php (este arquivo)
-//     - menu.php
-//   - config/  (pasta separada na raiz para banco de dados)
-//     - databaselogin.php
-//     - database.php
+// config.php
 
-// Inicia a sessão se não estiver iniciada (fallback, mas inicie no topo das páginas principais como index.php)
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 
-// Define a URL base do sistema (para links absolutos, resolvendo problemas de subpastas)
+// Define a URL base do sistema
 function url($path = '') {
-    // Remove '/' inicial do path para evitar duplicação
+    // Remove barras duplicadas
     $path = ltrim($path, '/');
     
-    // Base URL: '/' para raiz do domínio (ex: https://calory.com.br/entradas.php)
-    // Se o site estiver em subpasta (ex: calory.com.br/meusistema/), descomente e ajuste:
-    // $base_url = '/meusistema';
-    $base_url = '/';
+    // Se estiver usando subdiretório, ajuste aqui
+    $base_url = '/frutnorte'; // Altere para o caminho base do seu sistema
     
-    // Garante que não haja barras duplicadas
-    return rtrim($base_url, '/') . '/' . $path;
+    return $base_url . '/' . $path;
 }
 
-// Definição da página atual (para menu ativo - usa basename para ignorar pastas)
-if (isset($_SERVER['PHP_SELF'])) {
-    $current_page = basename($_SERVER['PHP_SELF']);
-} else {
-    $current_page = 'index.php';  // Default se não detectado (raro)
-}
+// Definição das páginas para menu ativo
+$current_page = basename($_SERVER['PHP_SELF']);
 
-// Grupos de páginas para menu ativo (use basename para consistência com subpastas como acoes_clientes/)
+// Grupos de páginas para menu ativo
 $clientesPages = ['clientes.php', 'cadastro-clientes.php', 'editar_cliente.php'];
 $produtosPages = ['produtos.php', 'cadastro-produtos.php', 'editar_produto.php', 'grupos.php'];
 $estoquePages = ['estoque.php', 'entradas.php', 'inventario.php'];
@@ -43,16 +24,16 @@ $vendasPages = ['vendas.php', 'nova-venda.php', 'historico-vendas.php'];
 $financasPages = ['tipopagamentos.php', 'condicoesfaturamentos.php', 'tipodespesas.php', 'centrocusto.php'];
 $contasPages = ['contaspagar.php', 'contas-receber.php', 'relatorio-contas.php'];
 
-// Informações do usuário logado (com caminho corrigido para databaselogin.php)
+// Informações do usuário logado
 $usuario_logado = 'Usuário';
 $empresa_logada = 'Empresa';
 $usuario_email = '';
 
+// Capturar informações do usuário logado via DatabaseLogin
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['admin_id'])) {
     try {
-        // Caminho corrigido: de includes/ para raiz/config/ (sobe um nível com '../', depois entra em config/)
-        // Se databaselogin.php estiver em outro lugar, ajuste aqui (ex: '../../databaselogin.php' se na raiz)
-        require_once '../config/databaselogin.php';
+        // Inclui o arquivo de conexão
+        require_once __DIR__ . '/../config/databaselogin.php';
         
         $dbLogin = new DatabaseLogin();
         $connlogin = $dbLogin->getConnection();
@@ -60,13 +41,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
         if ($connlogin) {
             $admin_id = $_SESSION['admin_id'];
             
-            // Query corrigida: usa 'nome_empresa' consistentemente
-            // Ajuste o nome da coluna/join se o seu banco usar 'razao_social' ou outro campo
+            // Query para buscar informações do usuário e empresa
             $stmt = $connlogin->prepare("
                 SELECT 
                     u.nome as usuario_nome,
                     u.email as usuario_email,
-                    e.nome_empresa as empresa_nome  -- Mude para 'razao_social' se for o campo real no banco
+                    e.nome_empresa as empresa_nome
                 FROM usuarios u 
                 LEFT JOIN empresas e ON u.empresa_id = e.id 
                 WHERE u.id = ? AND u.status = 1
@@ -77,25 +57,22 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
             if ($user_data) {
                 $usuario_logado = $user_data['usuario_nome'] ?? 'Usuário';
                 $usuario_email = $user_data['usuario_email'] ?? '';
-                $empresa_logada = $user_data['empresa_nome'] ?? 'Empresa';  // Consistente com o alias da query
+                $empresa_logada = $user_data['empresa_razao_social'] ?? $user_data['empresa_nome'] ?? 'Empresa';
                 
-                // Salva na sessão para evitar múltiplas consultas em outras páginas
+                // Salva na sessão para evitar múltiplas consultas
                 $_SESSION['usuario_nome'] = $usuario_logado;
                 $_SESSION['usuario_email'] = $usuario_email;
                 $_SESSION['empresa_nome'] = $empresa_logada;
             }
         }
     } catch (Exception $e) {
-        // Log do erro sem quebrar o script (verifique error_log no servidor)
-        error_log("Erro ao buscar dados do usuário em includes/config.php: " . $e->getMessage());
-        // Mantém valores padrão em caso de erro (ex: conexão falhou)
+        // Log do erro (opcional)
+        error_log("Erro ao buscar dados do usuário: " . $e->getMessage());
+        // Mantém os valores padrão em caso de erro
     }
-} else {
-    // Se não logado, valores padrão (não redireciona aqui para evitar loops em páginas públicas)
-    // Se quiser forçar login, descomente: header("Location: ../login.php"); exit;
 }
 
-// Funções auxiliares para avatar no menu (mantidas como estavam - úteis para exibir iniciais)
+// Funções auxiliares para o avatar
 function getIniciais($nome) {
     $nomes = explode(' ', $nome);
     $iniciais = '';

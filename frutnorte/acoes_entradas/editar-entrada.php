@@ -23,10 +23,12 @@ $idcliente = (int)$_SESSION['empresa_id']; // ADICIONADO: Define idcliente da se
 error_log("Editar Entrada - IDCLIENTE da sessão: {$idcliente} (" . date('Y-m-d H:i:s') . ")");
 
 // Configuração do banco de dados
-require_once '../config/databaselogin.php'; // o arquivo que contém a classe Database
-
-$database = new Database();
-$pdo = $database->getConnection();
+$db_config = [
+    'host' => 'localhost',
+    'dbname' => 'frutnorte',
+    'username' => 'root',
+    'password' => '@@rOOt@cAlOry@1967@@'
+];
 
 // Inicialização de variáveis
 $mensagem = '';

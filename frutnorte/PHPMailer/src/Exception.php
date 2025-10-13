@@ -19,7 +19,6 @@
  * FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-
 namespace PHPMailer\PHPMailer;
 
 /**

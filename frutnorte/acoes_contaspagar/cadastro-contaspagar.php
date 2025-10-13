@@ -55,10 +55,12 @@ try {
 // ========================================
 
 // Configuração do banco de dados
-require_once '../config/databaselogin.php'; // o arquivo que contém a classe Database
-
-$database = new Database();
-$pdo = $database->getConnection();
+$db_config = [
+    'host' => 'localhost',
+    'dbname' => 'frutnorte',
+    'username' => 'root',
+    'password' => '@@rOOt@cAlOry@1967@@'
+];
 
 // Inicialização de variáveis
 $mensagem = '';

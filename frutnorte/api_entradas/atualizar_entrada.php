@@ -61,10 +61,13 @@ try {
     exit;
 }
 
-require_once '../config/databaselogin.php'; // o arquivo que contém a classe Database
-
-$database = new Database();
-$pdo = $database->getConnection();
+// Configuração do banco de dados
+$db_config = [
+    'host' => 'localhost',
+    'dbname' => 'frutnorte',
+    'username' => 'root',
+    'password' => '@@rOOt@cAlOry@1967@@'
+];
 
 function conectarBanco() {
     global $db_config;

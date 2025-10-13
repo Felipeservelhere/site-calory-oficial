@@ -1294,7 +1294,7 @@ function chamarApiContasPagar($codentrada, $dadosEntrada, $idcliente) {
             
             error_log("Enviando parcela {$parcela['numero_parcela']} com dados (idcliente={$idcliente}): " . print_r($dadosApi, true));
             
-            $url = 'http://calory.com.br/frutnorte/api_contas_pagar/salvar_contas_pagar.php';
+            $url = 'http://localhost/frutnorte/api_contas_pagar/salvar_contas_pagar.php';
             
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
